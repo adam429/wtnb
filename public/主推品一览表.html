@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_iHRKUFF7dr">
+<el-container>
+
+  <el-container>
+
+  <el-header>
+    <el-row :gutter="24">
+      <el-col :span="4">
+        <el-button icon="el-icon-caret-left" circle v-on:click="left"></el-button>
+        <el-button icon="el-icon-caret-right" circle v-on:click="right"></el-button>
+      </el-col>
+
+      <el-col :span="20">
+        <h1>[{{ cur_product+1 }}] {{ product_list[cur_product][15] }}</h1>
+      </el-col>
+    </el-row>
+  </el-header>
+  <el-main>
+    <el-divider></el-divider>
+    <el-row>
+      <el-col :span="12">
+        <el-button type="primary" round>加价倍数: {{ product_list[cur_product][0] }}</el-button>
+        <el-button type="primary" round>售罄率: {{ product_list[cur_product][1] }}</el-button>
+        <el-button type="success" round>回本率: {{ product_list[cur_product][2] }}</el-button>
+        <el-button type="success" round>购买转化率: {{ product_list[cur_product][3] }}</el-button>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="8">
+        <img style="width: 100%;" v-bind:src="product_list[cur_product][4]">
+      </el-col>
+      <el-col :span="16">
+        <line-chart :data="chart1"></line-chart>
+        <line-chart :data="chart2"></line-chart>
+        <el-row>
+          <el-button round>采购件数: {{ product_list[cur_product][5] }}</el-button>
+          <el-button round>销售件数: {{ product_list[cur_product][6] }}</el-button>
+          <el-button round>库存件数: {{ product_list[cur_product][7] }}</el-button>
+          <el-button round>补货次数: {{ product_list[cur_product][8] }}</el-button>
+          <el-button round>采购价格: {{ product_list[cur_product][9] }}</el-button>
+          <el-button round>采购成本: {{ product_list[cur_product][10] }}</el-button>
+          <el-button round>销售价格: {{ product_list[cur_product][11] }}</el-button>
+          <el-button round>销售总额: {{ product_list[cur_product][12] }}</el-button>
+        </el-row>
+      </el-col>
+    </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_iHRKUFF7dr',
+    data: {
+      product_list: [["3.7",0.88,"3.24","35.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/1efe183d-996c-4414-ae01-e154314aac9a.jpg",105,92,12,10,"46.0","4830.0",170.18,15657,[{"name":"总库存","data":{"20200412":105}},{"name":"售出数量","data":{"20200412":92}},{"name":"可用库存","data":{"20200412":12}}],[{"name":"在单比","data":{"20200412":"75.000%"}},{"name":"在途比","data":{"20200412":"66.667%"}}],"10341 博主同款极致显瘦牛仔长裤"],["3.26",0.7,"2.27","34.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/a9e8f097-92e5-4934-9364-ce940d149f27.jpg",43,30,13,6,"52.0","2236.0",169.54,5086,[{"name":"总库存","data":{"20200412":43}},{"name":"售出数量","data":{"20200412":30}},{"name":"可用库存","data":{"20200412":13}}],[{"name":"在单比","data":{"20200412":"92.308%"}},{"name":"在途比","data":{"20200412":"46.154%"}}],"20655 高腰微喇显瘦牛仔裤"],["3.2",0.37,"1.18","19.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/cd0ff93b-b9bc-4c78-98eb-b28ae6ebc5c1.jpg",68,25,43,3,"92.0","6256.0",294.69,7367,[{"name":"总库存","data":{"20200412":68}},{"name":"售出数量","data":{"20200412":25}},{"name":"可用库存","data":{"20200412":43}}],[{"name":"在单比","data":{"20200412":"88.372%"}},{"name":"在途比","data":{"20200412":"76.744%"}}],"20678 干练职业显瘦西装裤"],["2.34",0.48,"1.11","19.000%","https://image.wetry.shop/product/spu/10294/10294_a.jpg",42,20,20,7,"79.0","3318.0",184.87,3697,[{"name":"总库存","data":{"20200412":42}},{"name":"售出数量","data":{"20200412":20}},{"name":"可用库存","data":{"20200412":20}}],[{"name":"在单比","data":{"20200412":"85.000%"}},{"name":"在途比","data":{"20200412":"70.000%"}}],"10294 设计感牛仔阔腿裤"],["4.91",0.85,"4.18","38.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/b338407d-8f2a-4137-b45c-bb978db5d5d9.jpg",20,17,3,1,"48.0","960.0",235.89,4010,[{"name":"总库存","data":{"20200412":20}},{"name":"售出数量","data":{"20200412":17}},{"name":"可用库存","data":{"20200412":3}}],[{"name":"在单比","data":{"20200412":"33.333%"}},{"name":"在途比","data":{"20200412":"0.000%"}}],"20723 复古蓝色九分牛仔直筒裤"],["5.6",0.61,"3.41","26.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/ef138ff9-1afa-456f-8284-ddfcc538ac9c.jpg",23,14,9,2,"46.0","1058.0",257.81,3609,[{"name":"总库存","data":{"20200412":23}},{"name":"售出数量","data":{"20200412":14}},{"name":"可用库存","data":{"20200412":9}}],[{"name":"在单比","data":{"20200412":"77.778%"}},{"name":"在途比","data":{"20200412":"77.778%"}}],"20721 复古蓝色牛仔长裤"],["2.47",0.59,"1.47","29.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/052194d2-593f-49ce-97e4-7092412d2347.jpg",27,16,10,2,"102.0","2754.0",252.42,4039,[{"name":"总库存","data":{"20200412":27}},{"name":"售出数量","data":{"20200412":16}},{"name":"可用库存","data":{"20200412":10}}],[{"name":"在单比","data":{"20200412":"90.000%"}},{"name":"在途比","data":{"20200412":"60.000%"}}],"20716 设计感显瘦微喇西装裤"],["3.47",0.28,"0.97","40.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/ccdafc72-ee66-4cae-bada-e8c03b4c3fff.jpg",43,12,30,5,"99.0","4257.0",343.42,4121,[{"name":"总库存","data":{"20200412":43}},{"name":"售出数量","data":{"20200412":12}},{"name":"可用库存","data":{"20200412":30}}],[{"name":"在单比","data":{"20200412":"23.333%"}},{"name":"在途比","data":{"20200412":"13.333%"}}],"20732 浅蓝色阔腿牛仔裤"],["6.66",0.46,"3.05","23.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/9554780c-0c64-48c8-8f6b-aef36df0f93d.jpg",24,11,13,3,"46.0","1104.0",306.37,3370,[{"name":"总库存","data":{"20200412":24}},{"name":"售出数量","data":{"20200412":11}},{"name":"可用库存","data":{"20200412":13}}],[{"name":"在单比","data":{"20200412":"100.000%"}},{"name":"在途比","data":{"20200412":"84.615%"}}],"20722 复古蓝色小哈伦牛仔裤"],["4.46",0.31,"1.37","33.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/6448661b-7c62-4d11-8de2-5dd297cff657.png",26,8,17,4,"46.0","1196.0",205.12,1641,[{"name":"总库存","data":{"20200412":26}},{"name":"售出数量","data":{"20200412":8}},{"name":"可用库存","data":{"20200412":17}}],[{"name":"在单比","data":{"20200412":"94.118%"}},{"name":"在途比","data":{"20200412":"70.588%"}}],"20944 黑色V领口显瘦打底衫"],["2.43",0.33,"0.81","21.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/0d779da6-2525-4a8e-afab-4b55180ebabf.jpg",36,12,16,5,"99.0","3564.0",240.62,2887,[{"name":"总库存","data":{"20200412":36}},{"name":"售出数量","data":{"20200412":12}},{"name":"可用库存","data":{"20200412":16}}],[{"name":"在单比","data":{"20200412":"81.250%"}},{"name":"在途比","data":{"20200412":"56.250%"}}],"20676 通勤职业显瘦西装裤"],["0.0",0.0,"0.39","20.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/3e989251-3970-4ad4-bd73-a16b17feb844.jpg",55,0,54,2,"89.0","4895.0",0,1914,[{"name":"总库存","data":{"20200412":55}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":54}}],[{"name":"在单比","data":{"20200412":"75.926%"}},{"name":"在途比","data":{"20200412":"64.815%"}}],"21011 百搭显瘦款褶皱深蓝色休闲裤"],["3.52",0.33,"1.17","28.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/0d74f50e-05e9-4478-ab7b-0f70d954107b.jpg",15,5,9,3,"95.0","1425.0",334.01,1670,[{"name":"总库存","data":{"20200412":15}},{"name":"售出数量","data":{"20200412":5}},{"name":"可用库存","data":{"20200412":9}}],[{"name":"在单比","data":{"20200412":"100.000%"}},{"name":"在途比","data":{"20200412":"100.000%"}}],"20809 慵懒风杏色云朵裤"],["2.48",0.54,"1.33","25.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/65dcbd09-b69d-4f09-9d1e-3eeaa17c3a55.png",13,7,6,3,"108.0","1404.0",267.53,1873,[{"name":"总库存","data":{"20200412":13}},{"name":"售出数量","data":{"20200412":7}},{"name":"可用库存","data":{"20200412":6}}],[{"name":"在单比","data":{"20200412":"83.333%"}},{"name":"在途比","data":{"20200412":"83.333%"}}],"20803 法式复古V领连衣裙"],["4.11",0.24,"0.99","18.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/c9e4ff94-4251-45eb-8cc6-807ecf2f3945.jpg",25,6,17,5,"65.0","1625.0",267.09,1603,[{"name":"总库存","data":{"20200412":25}},{"name":"售出数量","data":{"20200412":6}},{"name":"可用库存","data":{"20200412":17}}],[{"name":"在单比","data":{"20200412":"94.118%"}},{"name":"在途比","data":{"20200412":"82.353%"}}],"20777 淡黄色真丝感A字中裙"],["4.35",0.27,"1.16","30.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/a60f9202-43c7-477c-aa48-6c1d80ef7909.png",15,4,11,3,"95.0","1425.0",413.16,1653,[{"name":"总库存","data":{"20200412":15}},{"name":"售出数量","data":{"20200412":4}},{"name":"可用库存","data":{"20200412":11}}],[{"name":"在单比","data":{"20200412":"81.818%"}},{"name":"在途比","data":{"20200412":"45.455%"}}],"20810 显瘦女神款长款"],["9.93",0.11,"1.04","30.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/a36fb544-e28b-4464-91d7-08c6ef477985.png",19,2,16,1,"54.0","1026.0",536.08,1072,[{"name":"总库存","data":{"20200412":19}},{"name":"售出数量","data":{"20200412":2}},{"name":"可用库存","data":{"20200412":16}}],[{"name":"在单比","data":{"20200412":"62.500%"}},{"name":"在途比","data":{"20200412":"43.750%"}}],"20981 博主同款极致显瘦牛仔长裤"],["0.0",0.0,"1.5","60.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/dd552b39-6342-4790-99f6-c81be8fe43ae.png",10,0,10,2,"73.0","730.0",0,1094,[{"name":"总库存","data":{"20200412":10}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":10}}],[{"name":"在单比","data":{"20200412":"100.000%"}},{"name":"在途比","data":{"20200412":"80.000%"}}],"21020 春日暖黄休闲衬衫"],["12.61",0.05,"0.63","33.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/0aaee3eb-2558-4fd7-a523-6a5214e397c3.jpg",20,1,18,1,"99.0","1980.0",1248.64,1249,[{"name":"总库存","data":{"20200412":20}},{"name":"售出数量","data":{"20200412":1}},{"name":"可用库存","data":{"20200412":18}}],[{"name":"在单比","data":{"20200412":"72.222%"}},{"name":"在途比","data":{"20200412":"33.333%"}}],"20987 夏日百搭白色花苞半裙"],["0.0",0.0,"0.17","19.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/428c989d-4fe7-4ea0-aa69-46d996b78095.png",20,0,19,2,"128.0","2560.0",0,423,[{"name":"总库存","data":{"20200412":20}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":19}}],[{"name":"在单比","data":{"20200412":"94.737%"}},{"name":"在途比","data":{"20200412":"73.684%"}}],"21070 超显瘦黑色高腰设计感半裙（含腰带）"],["0.0",0.0,"0.74","40.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/412e16d5-7e66-4d33-8f09-cfd3f4f29e17.jpg",10,0,9,1,"69.0","690.0",0,514,[{"name":"总库存","data":{"20200412":10}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":9}}],[{"name":"在单比","data":{"20200412":"100.000%"}},{"name":"在途比","data":{"20200412":"100.000%"}}],"21065 天丝羊毛高品质超薄防嗮面膜T恤"],["14.25",0.07,"1.02","23.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/ac269b00-1541-4532-9714-667b3925510f.png",14,1,11,1,"48.0","672.0",684.0,684,[{"name":"总库存","data":{"20200412":14}},{"name":"售出数量","data":{"20200412":1}},{"name":"可用库存","data":{"20200412":11}}],[{"name":"在单比","data":{"20200412":"90.909%"}},{"name":"在途比","data":{"20200412":"63.636%"}}],"21067 复古浅蓝色九分牛仔直筒裤"],["0.0",0.0,"0.63","29.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/7fa81919-e3c4-4ae8-bf0f-b3337db43881.png",7,0,7,2,"128.0","896.0",0,563,[{"name":"总库存","data":{"20200412":7}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":7}}],[{"name":"在单比","data":{"20200412":"100.000%"}},{"name":"在途比","data":{"20200412":"100.000%"}}],"21069 超显瘦杏色高腰设计感半裙（含腰带）"],["0.0",0.0,"0.06","12.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/34e3ff00-48bd-4961-ba20-8703abe8b976.jpg",54,0,53,2,"89.0","4806.0",0,288,[{"name":"总库存","data":{"20200412":54}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":53}}],[{"name":"在单比","data":{"20200412":"18.868%"}},{"name":"在途比","data":{"20200412":"9.434%"}}],"21010 超级显瘦百搭黑色神裤"],["0.0",0.0,"0.0","8.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/a5736ae8-c682-404b-a8e6-0a99ec7666c1.jpg",14,0,13,2,"88.0","1232.0",0,0,[{"name":"总库存","data":{"20200412":14}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":13}}],[{"name":"在单比","data":{"20200412":"84.615%"}},{"name":"在途比","data":{"20200412":"46.154%"}}],"21004 撞色压线A字长款半裙"],["0.0",0.0,"0.09","20.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/6550192e-a75f-4a1a-803e-21a7ad630a5b.jpg",30,0,29,2,"108.0","3240.0",0,287,[{"name":"总库存","data":{"20200412":30}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":29}}],[{"name":"在单比","data":{"20200412":"24.138%"}},{"name":"在途比","data":{"20200412":"13.793%"}}],"20992 灰色时髦运动短裤套装"],["0.0",0.0,"0.0","0.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/54286591-8c65-42d8-8c20-c189ab742836.jpg",20,0,19,1,"99.0","1980.0",0,0,[{"name":"总库存","data":{"20200412":20}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":19}}],[{"name":"在单比","data":{"20200412":"15.789%"}},{"name":"在途比","data":{"20200412":"10.526%"}}],"20988 夏日百搭黄色花苞半裙"],["0.0",0.0,"0.0","0.000%","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/d626aafd-7d17-4619-9bb2-54a89a59aa30.png",15,0,14,1,"42.0","630.0",0,0,[{"name":"总库存","data":{"20200412":15}},{"name":"售出数量","data":{"20200412":0}},{"name":"可用库存","data":{"20200412":14}}],[{"name":"在单比","data":{"20200412":"100.000%"}},{"name":"在途比","data":{"20200412":"92.857%"}}],"21066 复古浅蓝色牛仔长裤"]],
+      cur_product: 0,
+      chart1: [],
+      chart2: [],
+    },
+    methods: {
+      load_chart: function() {
+        this.chart1 = this.product_list[this.cur_product][13]
+        this.chart2 = this.product_list[this.cur_product][14]
+      },
+      left: function() {
+        this.cur_product -= 1
+        if (this.cur_product<0) this.cur_product = this.product_list.length-1
+        this.load_chart()
+      },
+      right: function() {
+        this.cur_product += 1
+        if (this.cur_product>=this.product_list.length) this.cur_product = 0
+        this.load_chart()
+      },
+      keyhandler: function() {
+        console.log(event.keyCode)
+        if (event.keyCode == 37) {
+        	this.left()
+        } else if (event.keyCode == 39) {
+        	this.right()
+        }
+      }
+    },
+    mounted () {
+      document.addEventListener("keyup", this.keyhandler);
+    },
+    created () {
+      this.load_chart()
+    },
+  })
+</script></body>
+</html>
