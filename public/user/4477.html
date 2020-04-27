@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_uywm72tgCX">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_uywm72tgCX',
+    data: {
+      user: {"id":4477,"phone":"15286735865","login_count":2,"last_login_time":"2019-12-18T23:21:02.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":null,"wx_app_openid":"oBHz74q2R-0zmkxCvvhOJzmlyOpg","cert_name":null,"cert_no":null,"code":"04d21ee854cd4498be34b1a95c943193","wx_language":"zh_CN","wx_nickname":"柠檬精","wx_gender":"2","wx_province":"","wx_city":"","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKE849oDKskW4PEByDOzUic3DtTD6yIUCc7gBksnrN2mD1ZluN6J7riaftH2tErYV2q9P8a9tF2htvA/132","wx_unionid":null,"create_time":"2019-12-18T23:19:55.000Z","remove_flag":"\u0000","update_time":"2019-12-18T23:21:02.000Z","matching_division":null,"is_add_wechat":null,"stylist_id":null,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKE849oDKskW4PEByDOzUic3DtTD6yIUCc7gBksnrN2mD1ZluN6J7riaftH2tErYV2q9P8a9tF2htvA/132","https://image.wetry.shop/member/4477/undefined1aa5da56-ae30-4fe4-8a4b-75a5cb199f10","https://image.wetry.shop/member/4477/undefinedfbe28206-b2aa-40a2-b0ef-7a5c17bc6cf5","https://image.wetry.shop/member/4477/undefinede56947b7-3a71-4990-a765-07b41ef1a6ab","https://image.wetry.shop/member/4477/undefinedcf65b316-fa9b-40aa-a74c-498fbcd25f7b","https://image.wetry.shop/member/4477/undefined365989ca-a1e4-49aa-9aea-8a4d07c96864","https://image.wetry.shop/member/4477/undefinedc9e0b495-a199-47c0-a66e-0306d839c32a","https://image.wetry.shop/member/4477/undefinedea0a07c9-6345-429a-aa11-93a6b7a88667","https://image.wetry.shop/member/4477/undefineda6bc965a-ad44-4db2-810a-3488be67da3f","https://image.wetry.shop/member/4477/undefined29c7ebcb-3ccf-4992-afe8-786e65f9eb4e"],"style":["合格"],"sel_style":["优衣库女孩"],"age":22,"marriage":["单身"],"occupation":["政府/事业单位/社会保障","职员"],"heigth":"161","weight":"45","cup":"A","up_size":"XS/S","low_size":"24/1尺7"},
+      order: null,
+    },
+  })
+</script></body>
+</html>

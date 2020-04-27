@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_zuqitwClJh">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_zuqitwClJh',
+    data: {
+      user: {"id":8364,"phone":"15322099291","login_count":15,"last_login_time":"2020-04-21T01:38:16.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74iAroSdEuwVqXOShjCQPDvg","cert_name":null,"cert_no":null,"code":"d4253370b04b4480beaef4abdc71b00c","wx_language":"zh_CN","wx_nickname":"阿糖糖糖","wx_gender":"2","wx_province":"费利杜","wx_city":"","wx_country":"马尔代夫","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/dr34H3hOMVs6McDyGIQOqyaTKxD9tz6qpGkvxbrqLsQkcmwtPAsXL4WmLtmkJiaKFw1DrLRDxecndMpnR8L7fKw/132","wx_unionid":"oGyuKw2yMM-Fmoe4CGSR9anqnAH0","create_time":"2020-02-25T23:04:46.000Z","remove_flag":"\u0000","update_time":"2020-04-21T01:38:16.000Z","matching_division":6,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/dr34H3hOMVs6McDyGIQOqyaTKxD9tz6qpGkvxbrqLsQkcmwtPAsXL4WmLtmkJiaKFw1DrLRDxecndMpnR8L7fKw/132","https://image.wetry.shop/member/8364/undefined296d1d6a-f328-4a71-8470-8259693d9e9c","https://image.wetry.shop/member/8364/undefinedcc2ee954-001b-4ebd-941c-b7c3ec46db08","https://image.wetry.shop/member/8364/undefined42706fa9-6d42-4658-8c27-8917ef99d4b8","https://image.wetry.shop/member/8364/undefined1cdf83c6-80c5-4590-bec3-7a89c1b00179"],"style":["V0","不合格"],"sel_style":["轻奢简约OL","优衣库女孩","设计感OL"],"age":24,"marriage":["单身"],"occupation":["教育/培训/科研","小学/中学教师"],"heigth":"153","weight":"43","cup":"B","up_size":"XS/S","low_size":"26/1尺9"},
+      order: {"id":7050,"order_no":"20042100592","box_num":2,"box_no":null,"type":2,"member_id":8364,"message":"","expect_day":"2020-05-21T00:00:00.000Z","province":"广东省","city":"珠海市","district":"斗门区","addr":"白蕉镇斗门区城东中学","addr_username":"陈彤","addr_phone":"15322099291","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":null,"returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"日常工作","like_category":"spring,衬衫,连衣裙,休闲裤","like_category_detail":"spring,衬衫;连衣裙-长度:九分裙;休闲裤-长度:九分裤+长裤","stylist_id":6,"sign":null,"remark":null,"create_time":"2020-04-21T01:45:09.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"家居服,西装,西装裤,大衣","images":"","color":"浅色","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_KuMxOHRWXo">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_KuMxOHRWXo',
+    data: {
+      user: {"id":12352,"phone":"15900689208","login_count":5,"last_login_time":"2020-04-23T07:36:38.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74q0K09LxV3g8AxuxV0H-kpI","cert_name":null,"cert_no":null,"code":"9da372e4f0cc4d9abefa35e02608570c","wx_language":"zh_CN","wx_nickname":"萝卜丝馅饼","wx_gender":"2","wx_province":"上海","wx_city":"杨浦","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKv80qJqlPnyuau8fO6Oiacmf9KHTHpSkv7cgDSg445gcFrqicrRibZjTGsZgD1f6mlf24ibeWy3Gq6gg/132","wx_unionid":"oGyuKw7taTcTE724VDyFrMhvkM8w","create_time":"2020-03-31T16:09:01.000Z","remove_flag":"\u0000","update_time":"2020-04-23T07:36:38.000Z","matching_division":6,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKv80qJqlPnyuau8fO6Oiacmf9KHTHpSkv7cgDSg445gcFrqicrRibZjTGsZgD1f6mlf24ibeWy3Gq6gg/132","https://image.wetry.shop/member/12352/undefined72c934bf-2384-4fdd-8a42-9b27a5b78528","https://image.wetry.shop/member/12352/undefinedd54384b5-9989-4908-9d2a-76d3c62f5838","https://image.wetry.shop/member/12352/undefined40056609-422d-4f7c-abd7-c980889ecdb8","https://image.wetry.shop/member/12352/undefined2b6f3369-cd64-4714-a13b-baed586aedd5"],"style":["VIP用户","合格"],"sel_style":["优衣库女孩","学院派少女","韩系淑女","清新田园"],"age":29,"marriage":["已婚"],"occupation":["农林牧渔/水利/环境/公共设施","设计师/工程师"],"heigth":"164","weight":"49","cup":"A","up_size":"M","low_size":"27/2尺"},
+      order: {"id":6455,"order_no":"20033101891","box_num":1,"box_no":null,"type":2,"member_id":12352,"message":"1、平日穿搭：上班无着装要求，基本上班以紧身牛仔裤加T恤或者衬衫，风格是优衣库，休闲约会穿连衣裙加小开衫，或者T恤加半裙。2、身材：扁身，上身瘦、下身胯宽臀围大，整体偏矩形。3、诉求：个人衣品一般，基本没有审美，现在想寻求突破，希望搭配师小仙女或小鲜肉给我搭配一套休闲或者度假能穿着的、能够提升时髦度的衣服，不要太复杂。4、虽然填写了想收到或者不想收到的衣服，其实突破限制也是没有关系的，请自由发挥吧~主要诉求都写在3里了。5、禁忌：过于贴身的上衣（凸显上身扁身的缺点），暂时就想到这么多了，拜托啦~","expect_day":"2020-04-15T00:00:00.000Z","province":"上海市","city":"上海市","district":"徐汇区","addr":"辛耕路100弄2号26E","addr_username":"周靖","addr_phone":"15900689208","total":6,"select_num":6,"amount":"1638.0","discount":75,"discount_paid":"409.5","amount_real":"1228.5","amount_paid":"1228.5","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-04-18T15:22:44.000Z","package_flag":null,"logistics_no":"SF1162558388868","return_logistics_no":"7224721098","send_time":"2020-04-16T16:06:38.000Z","returned_time":null,"complete_time":"2020-04-18T15:22:44.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,度假旅行","like_category":"spring,开衫,休闲裤","like_category_detail":"spring,开衫;休闲裤-长度:短款+九分裤+长裤","stylist_id":6,"sign":null,"remark":"\u003cp\u003e客户接受晚一两天\u003c/p\u003e","create_time":"2020-03-31T19:53:37.000Z","create_at":1,"update_time":"2020-04-18T15:22:44.000Z","update_at":12352,"remove_flag":"\u0000","sign_time":"2020-04-17T09:20:39.000Z","appointment_time":"2020-04-19T11:00:00.000Z","dislike_category":"卫衣,首饰,风衣,家居服,T恤,毛衣,牛仔裤,大衣","images":"","color":"暖色,冷色,浅色","hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

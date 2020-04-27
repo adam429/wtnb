@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_2wAlFOmNvU">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_2wAlFOmNvU',
+    data: {
+      user: {"id":3246,"phone":"18920932963","login_count":19,"last_login_time":"2020-01-11T13:50:21.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":"o4k1IxFUOX0g6my2qwxEtfefZVYQ","wx_app_openid":"oBHz74g0jUJZ8XB7DpkHLtf0d1sw","cert_name":null,"cert_no":null,"code":"56cbbb7264f944949fd46547a582af03","wx_language":"zh_CN","wx_nickname":"?","wx_gender":"1","wx_province":"河南","wx_city":"周口","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIwI4IGxVZ257PV5ia4OlqibxvvrMicFEQHrnk6BgPXtZkYYwHaxVXg0646hHjdncw2fj7X8eLKIJ0qg/132","wx_unionid":"oGyuKw_6_umBeFKx7W6hqxTRr_Vg","create_time":"2019-12-18T20:41:07.000Z","remove_flag":"\u0000","update_time":"2020-01-11T13:50:21.000Z","matching_division":3,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIwI4IGxVZ257PV5ia4OlqibxvvrMicFEQHrnk6BgPXtZkYYwHaxVXg0646hHjdncw2fj7X8eLKIJ0qg/132","https://image.wetry.shop/member/3246/undefined7fbe320f-ab6e-42a3-96e8-b1879cad23ea","https://image.wetry.shop/member/3246/undefinedbbcdd6e7-c332-4aea-906b-c4e5929baec6","https://image.wetry.shop/member/3246/undefined5551a967-bf69-4f73-aa43-7ac1a081cd62","https://image.wetry.shop/member/3246/undefined767713db-6e2d-4e5f-bef0-299b6eac20f3","https://image.wetry.shop/member/3246/undefined6043a3c7-bb84-4474-b68d-8a28fd824422","https://image.wetry.shop/member/3246/undefined7f701d33-8f99-448b-bb90-3e85dd2a0260","https://image.wetry.shop/member/3246/undefineda10f3110-1a05-4a4c-a502-c46e3c52cf3c","https://image.wetry.shop/member/3246/undefinedc70667f1-2191-43ea-9d6a-6e55a11d156f","https://image.wetry.shop/member/3246/undefined2c3d5093-6ab6-4766-8c0e-57b3bd4a808b"],"style":["V0","不合格"],"sel_style":["韩系淑女","轻奢简约OL","设计感OL"],"age":23,"marriage":["恋爱"],"occupation":["学生","研究生在读"],"heigth":"151","weight":"43","cup":"A","up_size":"XS","low_size":"25/1尺8"},
+      order: {"id":2180,"order_no":"19121901194","box_num":1,"box_no":null,"type":2,"member_id":3246,"message":"外套想要可以叠穿的，连衣裙或半裙都OK，重点是裙长不想太长感觉穿不起来又不想太短感觉太幼稚","expect_day":"2019-12-31T00:00:00.000Z","province":"天津市","city":"天津市","district":"和平区","addr":"南市街道 新文化花园新景居","addr_username":"魏宝宝","addr_phone":"15022351767","total":6,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-01-02T18:59:34.000Z","package_flag":null,"logistics_no":"SF1160975836371","return_logistics_no":"7196729008","send_time":"2019-12-31T14:03:50.000Z","returned_time":null,"complete_time":"2020-01-06T19:45:28.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"日常工作,休闲聚会","like_category":"winter,衬衫,连衣裙,外套","like_category_detail":null,"stylist_id":3,"sign":null,"remark":null,"create_time":"2019-12-19T01:20:30.000Z","create_at":1,"update_time":"2020-01-06T19:45:28.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2020-01-02T09:00:08.000Z","appointment_time":"2020-01-03T19:00:00.000Z","dislike_category":"winter,西装裤,家居服","images":"https://image.wetry.shop/member/3246/undefined219e56f5-30d6-44a7-a406-dc005846018b,https://image.wetry.shop/member/3246/undefined8635d0f7-1cae-44ef-b946-2e6418674807,https://image.wetry.shop/member/3246/undefined43986e63-65f5-4f8d-8016-bcced8980d2f,https://image.wetry.shop/member/3246/undefined0b331294-49e9-4afe-80d8-a34a595ce798,https://image.wetry.shop/member/3246/undefinedd9d919f5-f90b-4a20-babd-42480caf5fee,https://image.wetry.shop/member/3246/undefined9e451f58-ecd9-4a02-94eb-29b07d909f8c,https://image.wetry.shop/member/3246/undefined210b9e6f-0bcd-43b1-b7b7-3165f253722d","color":null,"hold_flag":"\u0000","match_count":2,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

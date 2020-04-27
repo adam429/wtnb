@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_zWeELWJy2m">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_zWeELWJy2m',
+    data: {
+      user: {"id":6334,"phone":"18628139103","login_count":7,"last_login_time":"2020-01-15T20:48:41.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74mwiqq4rxQYA63Ej1m00nVw","cert_name":null,"cert_no":null,"code":"91330c63837d4b709997e7f7046ec5f4","wx_language":"zh_CN","wx_nickname":"syrahs","wx_gender":"2","wx_province":"四川","wx_city":"成都","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/vqIoQaWjf4utD0jWxl7fiaVLsPia9Bia5G127KwmwpI04mwvTCib3cDcr2L9HZ2SKKnUG4j0ZDdVh0sicJxtXLREP4g/132","wx_unionid":null,"create_time":"2019-12-22T20:07:59.000Z","remove_flag":"\u0000","update_time":"2020-01-15T20:48:41.000Z","matching_division":9,"is_add_wechat":"\u0001","stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/vqIoQaWjf4utD0jWxl7fiaVLsPia9Bia5G127KwmwpI04mwvTCib3cDcr2L9HZ2SKKnUG4j0ZDdVh0sicJxtXLREP4g/132","https://image.wetry.shop/member/6334/undefined71c8df7b-f2d9-4cb3-9a53-a37305c547b9","https://image.wetry.shop/member/6334/undefined945e75eb-b40c-4b97-bbe2-f4ee01cd071c","https://image.wetry.shop/member/6334/undefined5f9d9f7d-f599-4001-a100-70d37df0b6ad","https://image.wetry.shop/member/6334/undefined8fb73497-55a2-4cfa-b618-7d8c469fd440","https://image.wetry.shop/member/6334/undefined046629e9-c329-4ed2-83e8-4104d6455846","https://image.wetry.shop/member/6334/undefinedfc629c4a-f6cb-44d9-9d7f-251004ef263d"],"style":["V0","合格"],"sel_style":["时髦潮酷","日系森女","优衣库女孩"],"age":27,"marriage":["单身"],"occupation":["政府/事业单位/社会保障","职员"],"heigth":"160","weight":"50","cup":"B","up_size":"S/M","low_size":"26/1尺9"},
+      order: {"id":3212,"order_no":"19122202226","box_num":1,"box_no":null,"type":2,"member_id":6334,"message":"","expect_day":"2019-12-30T00:00:00.000Z","province":"四川省","city":"成都市","district":"龙泉驿区","addr":"西河镇胜利家园8栋","addr_username":"李苗苗","addr_phone":"18628139103","total":6,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-01-02T13:53:32.000Z","package_flag":null,"logistics_no":"SF1160960461883","return_logistics_no":"7196587495","send_time":"2019-12-30T10:28:51.000Z","returned_time":null,"complete_time":"2020-01-05T18:41:05.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"日常工作,休闲聚会","like_category":"winter,休闲裤,半裙,外套","like_category_detail":null,"stylist_id":9,"sign":null,"remark":null,"create_time":"2019-12-22T20:34:00.000Z","create_at":1,"update_time":"2020-01-05T18:41:05.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2020-01-01T13:13:28.000Z","appointment_time":"2020-01-02T19:00:00.000Z","dislike_category":"winter,打底裤袜,家居服","images":"","color":null,"hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

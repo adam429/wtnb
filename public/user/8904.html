@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_E8jbaMR3GH">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_E8jbaMR3GH',
+    data: {
+      user: {"id":8904,"phone":"15275160668","login_count":20,"last_login_time":"2020-04-18T11:25:59.000Z","source":"小双双jodie","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74pfdOCTFWC96Fo3QIPVYaHU","cert_name":null,"cert_no":null,"code":"84d826aba3904f2e9d8960fa2e2cfee0","wx_language":"zh_CN","wx_nickname":"维娜叫nuo不是na","wx_gender":"2","wx_province":"山东","wx_city":"","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/FSo0ajCJceqdon9skFnVn1Yhx5ZpTxRJJjGbNyCQfeZRficAjHPzns58k7Ewjic5kqzcXKKVeBCmGPN5suYemMrQ/132","wx_unionid":"oGyuKw3Km7ULqbH1T2F7Oilxwh_U","create_time":"2020-03-07T15:53:10.000Z","remove_flag":"\u0000","update_time":"2020-04-18T11:25:59.000Z","matching_division":5,"is_add_wechat":null,"stylist_id":3,"photo":["https://wx.qlogo.cn/mmopen/vi_32/FSo0ajCJceqdon9skFnVn1Yhx5ZpTxRJJjGbNyCQfeZRficAjHPzns58k7Ewjic5kqzcXKKVeBCmGPN5suYemMrQ/132","https://image.wetry.shop/member/8904/undefined0ebc2f3d-48e2-439d-821b-b35a385e9ada","https://image.wetry.shop/member/8904/undefined8da31007-45f4-4c0b-9848-37b969117d82","https://image.wetry.shop/member/8904/undefinedf8a2fbde-97c5-4a06-8cf1-acb6512ec08d"],"style":["VIP用户","合格"],"sel_style":["温柔小姐姐","清新田园","轻奢简约OL","设计感OL","时装周街拍girl","超A时髦girl"],"age":25,"marriage":["单身"],"occupation":["教育/培训/科研","部门主管"],"heigth":"168","weight":"56","cup":"B","up_size":"M","low_size":"31/2尺4"},
+      order: {"id":4996,"order_no":"20030900432","box_num":1,"box_no":null,"type":2,"member_id":8904,"message":"大方舒适，显品质好。颜色可以适当亮眼一下～不夸张就好\n春装可以搭配一套\n夏装多搭配几套～\n\n","expect_day":"2020-03-21T00:00:00.000Z","province":"山东省","city":"济南市","district":"市中区","addr":"中海国际社区熙岸西区10号楼","addr_username":"维娜","addr_phone":"15275160668","total":7,"select_num":3,"amount":"1004.0","discount":85,"discount_paid":"215.6","amount_real":"788.4","amount_paid":"788.4","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-03-25T19:12:04.000Z","package_flag":null,"logistics_no":"SF1162266931307","return_logistics_no":"7215853072","send_time":"2020-03-22T14:41:56.000Z","returned_time":null,"complete_time":"2020-03-30T14:35:46.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,日常工作","like_category":"spring,连衣裙,开衫,休闲裤","like_category_detail":"spring,连衣裙-长度:及膝裙+七分裙;开衫;休闲裤-长度:长裤","stylist_id":5,"sign":null,"remark":null,"create_time":"2020-03-09T23:46:41.000Z","create_at":1,"update_time":"2020-03-30T14:35:46.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2020-03-23T16:53:24.000Z","appointment_time":"2020-03-28T15:00:00.000Z","dislike_category":"首饰,家居服,T恤,大衣","images":"https://image.wetry.shop/member/8904/undefinedf6e5f3de-b17b-4147-9ae8-446c9e0d09dd,https://image.wetry.shop/member/8904/undefined9c680912-7fbf-4bec-bbce-a1a754c7f9f9,https://image.wetry.shop/member/8904/undefinedca732be9-77d9-416d-9ab8-bf6991bcbd35","color":"暖色,冷色,深色,浅色","hold_flag":"\u0000","match_count":2,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_cf4gWOc5lg">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_cf4gWOc5lg',
+    data: {
+      user: {"id":10413,"phone":"13737079730","login_count":5,"last_login_time":"2020-04-14T16:07:49.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74kzD2KT0Pf5G61STeGw5p-I","cert_name":null,"cert_no":null,"code":"94ca2ca550e2493b9d3930f2e2da3197","wx_language":"zh_CN","wx_nickname":"晶晶?","wx_gender":"2","wx_province":"广西","wx_city":"南宁","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/LHvtLJqoqvNYy3yG7c0ZFjibC92nicSTj7MFOU3gNauX4IgG77jRPibLiadQoey9c9YXfhtkviadOzUWhicGAhTz2baA/132","wx_unionid":"oGyuKwycww4doiNlfD31dWZ__cW4","create_time":"2020-03-14T13:26:41.000Z","remove_flag":"\u0000","update_time":"2020-04-14T16:07:49.000Z","matching_division":5,"is_add_wechat":null,"stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/LHvtLJqoqvNYy3yG7c0ZFjibC92nicSTj7MFOU3gNauX4IgG77jRPibLiadQoey9c9YXfhtkviadOzUWhicGAhTz2baA/132","https://image.wetry.shop/member/10413/undefined5d71114c-190d-4a31-b693-dd970e2ca9e8","https://image.wetry.shop/member/10413/undefined84eb57bf-6e17-4fe7-95ce-c268ff348eac","https://image.wetry.shop/member/10413/undefined6412c744-1b9c-4bfc-a966-7380e400126e","https://image.wetry.shop/member/10413/undefinedb64c0106-ad52-4905-b86b-8c9dab6a9d02"],"style":["V1","合格"],"sel_style":["轻奢简约OL","设计感OL","时装周街拍girl"],"age":30,"marriage":["已育"],"occupation":["广告/媒体","市场/产品"],"heigth":"158","weight":"48","cup":"B","up_size":"XS/S","low_size":"26/1尺9"},
+      order: {"id":5484,"order_no":"20031400920","box_num":1,"box_no":null,"type":2,"member_id":10413,"message":"南方快要入夏，请寄春夏装，谢谢","expect_day":"2020-04-05T00:00:00.000Z","province":"广西壮族自治区","city":"南宁市","district":"青秀区","addr":"中柬路6号保利（南方温度28-31度寄春夏款）","addr_username":"假涔","addr_phone":"13737079730","total":6,"select_num":1,"amount":"238.0","discount":100,"discount_paid":"43.0","amount_real":"195.0","amount_paid":"195.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-04-14T16:10:40.000Z","package_flag":null,"logistics_no":"SF1162496303118","return_logistics_no":"7222939622","send_time":"2020-04-10T19:41:12.000Z","returned_time":null,"complete_time":"2020-04-18T20:45:07.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"商务社交,日常工作","like_category":"spring,衬衫,牛仔裤,西装裤","like_category_detail":"spring,衬衫;牛仔裤-长度:长裤;西装裤-长度:九分裤+长裤","stylist_id":5,"sign":null,"remark":null,"create_time":"2020-03-14T13:53:16.000Z","create_at":1,"update_time":"2020-04-18T20:45:07.000Z","update_at":53,"remove_flag":"\u0000","sign_time":"2020-04-14T11:35:18.000Z","appointment_time":"2020-04-15T13:00:00.000Z","dislike_category":"","images":"","color":"暖色,冷色,浅色","hold_flag":"\u0000","match_count":1,"active_coupon_id":4534},
+    },
+  })
+</script></body>
+</html>

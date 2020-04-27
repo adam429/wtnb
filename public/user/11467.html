@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_YgdKU1mwbg">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_YgdKU1mwbg',
+    data: {
+      user: {"id":11467,"phone":"15659008805","login_count":1,"last_login_time":"2020-03-16T12:09:58.000Z","source":"20-15-KOL-韦思嘉","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":null,"wx_app_openid":"oBHz74uqzpVqSGQ-J5q_dVsHXFeo","cert_name":null,"cert_no":null,"code":"d6c356104ef341f4b2908d0a1113727f","wx_language":"en","wx_nickname":"高婧","wx_gender":"2","wx_province":"","wx_city":"","wx_country":"希腊","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLElNvY31Iic1sM6Tgeq8Wc58uRMHbZ2v10DsbPN27wD1iag7QwkA9MbMC574ibHwxXJTIGNB1avnPXA/132","wx_unionid":"oGyuKw8KSw5UAkdv-IMY4A97F7mk","create_time":"2020-03-16T12:09:57.000Z","remove_flag":"\u0000","update_time":"2020-03-16T12:10:19.000Z","matching_division":null,"is_add_wechat":null,"stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLElNvY31Iic1sM6Tgeq8Wc58uRMHbZ2v10DsbPN27wD1iag7QwkA9MbMC574ibHwxXJTIGNB1avnPXA/132","https://image.wetry.shop/member/11467/undefined6c53ba42-321c-45c2-90fe-d74b3e79d4b1","https://image.wetry.shop/member/11467/undefinedb12c5cf9-33b2-47be-8e22-e3eb42004832","https://image.wetry.shop/member/11467/undefined82e4c7b9-abc5-4a29-936b-21b07c144f12"],"style":["不合格"],"sel_style":["清新田园","温柔小姐姐","法式复古","美式复古","日系森女","学院派少女"],"age":21,"marriage":["单身"],"occupation":["学生","大学在读"],"heigth":"158","weight":"47","cup":"A","up_size":"XS/S","low_size":"27/2尺"},
+      order: null,
+    },
+  })
+</script></body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_cZvbitX00w">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_cZvbitX00w',
+    data: {
+      user: {"id":11118,"phone":"13927770836","login_count":16,"last_login_time":"2020-04-11T14:40:02.000Z","source":"20-15-KOL-韦思嘉","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74m-4sBdopUUUNTX1Zat3ILk","cert_name":null,"cert_no":null,"code":"5124b0278c774695a4904f3967573cf6","wx_language":"zh_CN","wx_nickname":"丁可欣","wx_gender":"2","wx_province":"湖南","wx_city":"衡阳","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/nia8QbFDQtY0OnInPhicfUhicDO4xUUCYYicT5FYkXLzC59ADaa1eUOC2B9pc3Frm6XGDlchz3vzN3zSev5ex26ePA/132","wx_unionid":"oGyuKw3Lu7Q0uqXCultEHJhr9RAc","create_time":"2020-03-15T21:10:07.000Z","remove_flag":"\u0000","update_time":"2020-04-11T14:40:02.000Z","matching_division":5,"is_add_wechat":null,"stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/nia8QbFDQtY0OnInPhicfUhicDO4xUUCYYicT5FYkXLzC59ADaa1eUOC2B9pc3Frm6XGDlchz3vzN3zSev5ex26ePA/132","https://image.wetry.shop/member/11118/undefined6eb55b93-cb9f-4164-aa90-a9e2b013415e","https://image.wetry.shop/member/11118/undefined8f73af51-877f-47fa-9c4b-7945871a7afc","https://image.wetry.shop/member/11118/undefined31ea3f19-1a30-4c09-a88b-42e48d9ae7ab","https://image.wetry.shop/member/11118/undefinedf78fac5a-ad74-4718-8e14-06059816a251","https://image.wetry.shop/member/11118/undefined18ee432c-46c6-41dd-a113-5041ec42a7ea","https://image.wetry.shop/member/11118/undefined6d409cc6-952c-400c-9e56-22e58c8bf52f","https://image.wetry.shop/member/11118/undefined7857c6c9-3e4c-433a-b20b-a26aa010aa00","https://image.wetry.shop/member/11118/undefinede0889678-78ad-4c1f-9b2a-ea0ad28301fc"],"style":["V0","合格"],"sel_style":["法式复古","韩系淑女","轻奢简约OL","高级名媛OL","设计感OL","时装周街拍girl","优衣库女孩"],"age":24,"marriage":["已婚"],"occupation":["教育/培训/科研","培训师"],"heigth":"158","weight":"48","cup":"D","up_size":"XS/S","low_size":"26/1尺9"},
+      order: {"id":6769,"order_no":"20041100311","box_num":2,"box_no":null,"type":2,"member_id":11118,"message":"","expect_day":"2020-05-17T00:00:00.000Z","province":"广东省","city":"佛山市","district":"南海区","addr":"桂城街道怡海路海逸城市花园","addr_username":"丁可欣","addr_phone":"13927770836","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":null,"returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,度假旅行","like_category":"spring,西装,连衣裙,开衫","like_category_detail":"spring,西装;连衣裙-长度:九分裙;开衫","stylist_id":5,"sign":null,"remark":null,"create_time":"2020-04-11T16:04:38.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"","images":"","color":"暖色","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_QYZKyLkGfw">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_QYZKyLkGfw',
+    data: {
+      user: {"id":3107,"phone":"17685898338","login_count":21,"last_login_time":"2020-01-15T20:37:41.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":null,"wx_app_openid":"oBHz74gbDIREEiNwqTNxfp3bYIyY","cert_name":null,"cert_no":null,"code":"4570f27919eb4ee9a2bbeadd09c6eb85","wx_language":"zh_CN","wx_nickname":"季小兔","wx_gender":"1","wx_province":"","wx_city":"","wx_country":"卢森堡","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/UfiaNHC8XgI1xZBBFshGEaa0ntsLaaDMIdqbR6EfMzTDbCGFfTky5H2zw2yxD78yianJuQflKAc74hzibDjZ0sglA/132","wx_unionid":null,"create_time":"2019-12-18T20:33:16.000Z","remove_flag":"\u0000","update_time":"2020-01-15T20:37:41.000Z","matching_division":3,"is_add_wechat":"\u0001","stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/UfiaNHC8XgI1xZBBFshGEaa0ntsLaaDMIdqbR6EfMzTDbCGFfTky5H2zw2yxD78yianJuQflKAc74hzibDjZ0sglA/132","https://image.wetry.shop/member/3107/undefined1914c9b6-9f5a-4c54-b565-f1584393e7ad","https://image.wetry.shop/member/3107/undefined1be01599-eb3b-411c-a820-0091a4bc16df","https://image.wetry.shop/member/3107/undefined1573878b-c29b-463e-9053-bc7dafc80814","https://image.wetry.shop/member/3107/undefined2e4a8f43-f1e4-4cc5-b1fc-0ffeaba4d26e"],"style":["V0","合格"],"sel_style":["时髦潮酷","暗黑酷女孩","时装周街拍girl","优衣库女孩"],"age":33,"marriage":["恋爱"],"occupation":["教育/培训/科研","小学/中学教师"],"heigth":"172","weight":"52","cup":"B","up_size":"S/M","low_size":"26/1尺9"},
+      order: {"id":1595,"order_no":"19121800609","box_num":1,"box_no":null,"type":2,"member_id":3107,"message":"我整体腿部线条不错，腿算细长直，大腿细，小腿也不粗，只不过大腿太细显得小腿略粗，一般不会穿半裙让裙子卡在小腿肚的位置，要么是短裙要么是长裙","expect_day":"2019-12-22T00:00:00.000Z","province":"山东省","city":"青岛市","district":"市北区","addr":"伊春路19号2单元701户","addr_username":"季梦","addr_phone":"17685898338","total":8,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2019-12-24T18:58:00.000Z","package_flag":null,"logistics_no":"SF1160893345936","return_logistics_no":"7192689848","send_time":"2019-12-22T09:48:20.000Z","returned_time":null,"complete_time":"2019-12-27T17:44:44.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"日常工作,休闲聚会","like_category":"winter,毛衣,连衣裙,卫衣","like_category_detail":null,"stylist_id":3,"sign":null,"remark":null,"create_time":"2019-12-18T21:13:54.000Z","create_at":1,"update_time":"2019-12-27T17:44:44.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2019-12-24T11:00:05.000Z","appointment_time":"2019-12-25T19:00:00.000Z","dislike_category":"winter,西装,西装裤,围巾,羽绒服/棉服,家居服","images":"","color":null,"hold_flag":"\u0000","match_count":2,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

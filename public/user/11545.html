@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_C9DdZWQApb">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_C9DdZWQApb',
+    data: {
+      user: {"id":11545,"phone":"18519653310","login_count":10,"last_login_time":"2020-04-22T20:55:26.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74i7REdeedxBmHmpntMEC9ss","cert_name":null,"cert_no":null,"code":"258449e914d345bfb45c7bbb0630fa42","wx_language":"zh_CN","wx_nickname":"Jane Liu?","wx_gender":"2","wx_province":"Pennsylvania","wx_city":"Others","wx_country":"US","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/hLHFX3PFvGxpy3bsdSo6cxAlYYr0Ao2vicJYibCjN1Pj4a7RTZ9TT573JwlbGF5PTwVKvPuPOqSnr2YPiaibeFnUvA/132","wx_unionid":"oGyuKwxbt7ssC-CXj2Xz8pO6Hypk","create_time":"2020-03-16T16:36:44.000Z","remove_flag":"\u0000","update_time":"2020-04-22T20:55:26.000Z","matching_division":6,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/hLHFX3PFvGxpy3bsdSo6cxAlYYr0Ao2vicJYibCjN1Pj4a7RTZ9TT573JwlbGF5PTwVKvPuPOqSnr2YPiaibeFnUvA/132","https://image.wetry.shop/member/11545/undefinede5eb11b2-cd73-4e39-8787-7ff8b5f44399","https://image.wetry.shop/member/11545/undefined3c9b1ef1-d02e-4496-a4ba-bc08cd5a271a","https://image.wetry.shop/member/11545/undefined0fff9dea-b1ff-4bc6-9952-0542fb9eab17","https://image.wetry.shop/member/11545/undefined6faea8da-e1cb-4267-a9ed-d4428d02b669","https://image.wetry.shop/member/11545/undefined0941176c-c25e-4dab-9913-b3d555954dc7","https://image.wetry.shop/member/11545/undefined6b6d1304-e73a-4782-beb9-31cb621b5ac4","https://image.wetry.shop/member/11545/undefined11f1bb3a-caf0-4a87-97de-06d558a74499","https://image.wetry.shop/member/11545/undefined889a28bf-f245-415b-a024-7960b3b6b6ca","https://image.wetry.shop/member/11545/undefinedc130c744-9c07-46b1-965a-f20d5fb56a9a"],"style":["合格"],"sel_style":["温柔小姐姐","超A时髦girl","轻奢简约OL","高级名媛OL","设计感OL"],"age":26,"marriage":["恋爱"],"occupation":["金融/投资/银行/保险/财务/咨询","其他"],"heigth":"158","weight":"45","cup":"A","up_size":"XS/S","low_size":"24/1尺7"},
+      order: {"id":6021,"order_no":"20031901457","box_num":1,"box_no":null,"type":2,"member_id":11545,"message":"","expect_day":"2020-04-11T00:00:00.000Z","province":"北京市","city":"北京市","district":"海淀区","addr":"皂君庙路鑫雅苑6号楼208","addr_username":"刘然","addr_phone":"18519653310","total":0,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":10,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":"2020-04-11T00:00:00.000Z","returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,日常工作","like_category":"spring,衬衫,连衣裙,休闲裤","like_category_detail":"spring,衬衫;连衣裙;休闲裤","stylist_id":6,"sign":null,"remark":"\u003cp\u003e要小双双上衣裤子和衬衫裙，以及sans的香槟色吊带，需要和用户确认一下\u003c/p\u003e\u003cp\u003e\u003cbr\u003e\u003c/p\u003e","create_time":"2020-03-19T10:07:57.000Z","create_at":1,"update_time":"2020-04-15T18:54:50.000Z","update_at":6,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"风衣,毛衣,大衣","images":"https://image.wetry.shop/member/11545/undefined1433ea39-f802-4b58-a340-32a3114e7cca,https://image.wetry.shop/member/11545/undefinedabfd3a53-6745-4bc2-8c32-61271a9c8def","color":"","hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_xx97ZwVwHQ">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_xx97ZwVwHQ',
+    data: {
+      user: {"id":2960,"phone":"13751716520","login_count":6,"last_login_time":"2020-01-02T19:43:01.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":null,"wx_app_openid":"oBHz74o4SoqsYZS4M4zlR2c7MUoU","cert_name":null,"cert_no":null,"code":"f7be2e480af14a2386014bf89ffe7bf7","wx_language":"zh_CN","wx_nickname":"11??","wx_gender":"2","wx_province":"广东","wx_city":"广州","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/gZzSunm1rWYHnicetuZZ2SvKQeqKiaics0sC03KOQkZxYvz9ua4XPZTZHwvsSXG9h6XmFnMufiaw1dLiaIAsiaicBXl0A/132","wx_unionid":null,"create_time":"2019-12-18T20:25:42.000Z","remove_flag":"\u0000","update_time":"2020-01-02T19:43:01.000Z","matching_division":null,"is_add_wechat":null,"stylist_id":3,"photo":["https://wx.qlogo.cn/mmopen/vi_32/gZzSunm1rWYHnicetuZZ2SvKQeqKiaics0sC03KOQkZxYvz9ua4XPZTZHwvsSXG9h6XmFnMufiaw1dLiaIAsiaicBXl0A/132","https://image.wetry.shop/member/2960/undefined4d6b80bb-56cf-4258-b313-e926966478b4","https://image.wetry.shop/member/2960/undefinede62dd147-0d9b-49f9-b920-bec8838b854b","https://image.wetry.shop/member/2960/undefined11a057a1-3955-4ab8-81ca-5120fb8d340d","https://image.wetry.shop/member/2960/undefined7e8fb89f-0ca8-4d06-805e-5a1a114a9017","https://image.wetry.shop/member/2960/undefined3f401e4d-ded2-4e21-aa4b-64b22eb60e9f","https://image.wetry.shop/member/2960/undefined9a27875c-1d82-4023-b402-707b3d4f7e4b","https://image.wetry.shop/member/2960/undefined385cbb72-c0c8-4f12-844c-f74318fc63d4","https://image.wetry.shop/member/2960/undefined07d33d64-42af-47ad-9aec-29c7284dd5b7","https://image.wetry.shop/member/2960/undefined07070777-13cc-4ebe-836c-9f4045e8c1ee"],"style":["不合格"],"sel_style":["温柔小姐姐","时装周街拍girl"],"age":33,"marriage":["单身"],"occupation":["商贸/批发零售/消费/制造","个体户/私营老板"],"heigth":"153","weight":"45","cup":"B","up_size":"XS/S","low_size":"25/1尺8"},
+      order: null,
+    },
+  })
+</script></body>
+</html>

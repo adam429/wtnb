@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_fniWxkrKeg">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_fniWxkrKeg',
+    data: {
+      user: {"id":3898,"phone":"18216001640","login_count":44,"last_login_time":"2020-04-16T14:03:06.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":null,"wx_app_openid":"oBHz74gayh3sTJnVTMioRlriNXWo","cert_name":null,"cert_no":null,"code":"e2486a1a093c4e9a980677a90ca1a181","wx_language":"zh_CN","wx_nickname":"Alita！","wx_gender":"1","wx_province":"","wx_city":"","wx_country":"黎巴嫩","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/u5whsPbtQDAalh7UuRjw5oZZmA7vQPaIHLKnEqMyInfLeczJj0CZibptp9nQGUkPFcXWb90bcFrgUcrys4nT8Og/132","wx_unionid":"oGyuKw1O9Ps86Mi89UCOyXGtLD1A","create_time":"2019-12-18T21:43:43.000Z","remove_flag":"\u0000","update_time":"2020-04-16T14:03:06.000Z","matching_division":5,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/u5whsPbtQDAalh7UuRjw5oZZmA7vQPaIHLKnEqMyInfLeczJj0CZibptp9nQGUkPFcXWb90bcFrgUcrys4nT8Og/132","https://image.wetry.shop/member/3898/undefined92e2d72b-3dc6-40b3-8dc3-d7cf29f70e39","https://image.wetry.shop/member/3898/undefined2d8caaa8-cbfa-486c-b967-03cc4da9eb74","https://image.wetry.shop/member/3898/undefined1346b643-5d7e-414e-8e1e-e16f88e2ee54","https://image.wetry.shop/member/3898/undefined5c7c5cf8-86e9-4605-9325-86d80787e4a0","https://image.wetry.shop/member/3898/undefined6a353eec-69b0-453e-8efb-fd18e6acceb4","https://image.wetry.shop/member/3898/undefinedf5d5e22a-3046-4dcc-a2dc-a39b2cef4c77"],"style":["V1","合格"],"sel_style":["美式复古","法式复古","时装周街拍girl","优衣库女孩"],"age":23,"marriage":["恋爱"],"occupation":["其他","自由职业"],"heigth":"163","weight":"53","cup":"A","up_size":"XS/S","low_size":"27/2尺"},
+      order: {"id":5948,"order_no":"20031701384","box_num":4,"box_no":null,"type":2,"member_id":3898,"message":"","expect_day":"2020-04-01T00:00:00.000Z","province":"湖南省","city":"常德市","district":"武陵区","addr":"长庚路雅梦园旁家家悦平价店","addr_username":"李贤","addr_phone":"18216001640","total":6,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-04-06T21:21:31.000Z","package_flag":null,"logistics_no":"SF1162404840707","return_logistics_no":"7218966283","send_time":"2020-04-02T12:19:51.000Z","returned_time":null,"complete_time":"2020-04-09T19:17:13.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,度假旅行","like_category":"spring,首饰,西装,连衣裙","like_category_detail":"spring,首饰;西装;连衣裙-长度:及膝裙+七分裙","stylist_id":5,"sign":null,"remark":null,"create_time":"2020-03-17T20:37:31.000Z","create_at":1,"update_time":"2020-04-09T19:17:13.000Z","update_at":11,"remove_flag":"\u0000","sign_time":"2020-04-04T11:09:26.000Z","appointment_time":"2020-04-07T11:00:00.000Z","dislike_category":"卫衣,家居服,T恤,毛衣,牛仔裤,休闲裤,西装裤,大衣,外套","images":"","color":"冷色,浅色","hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

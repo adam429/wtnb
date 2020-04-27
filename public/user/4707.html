@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_sGuFUaItSC">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_sGuFUaItSC',
+    data: {
+      user: {"id":4707,"phone":"15386209579","login_count":8,"last_login_time":"2019-12-31T08:55:08.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":"o4k1IxH3492i4QlT0-IGVuK1D1QA","wx_app_openid":"oBHz74o5KWYNW38scxRupHI1_Atk","cert_name":null,"cert_no":null,"code":"20ec6ae1056c4f1ebd209be114d97542","wx_language":"zh_CN","wx_nickname":"琪","wx_gender":"2","wx_province":"上海","wx_city":"松江","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/6nwhmVyMVObLpqGDicoWyIx9GoYLK6GrTfUBOgNvS9a4uNSicKjib5mpQTWqsWJ4NJE7b0q9JspV02fLg7yibFPRWg/132","wx_unionid":"oGyuKw_7i_nP8wDywEadsUL5xgro","create_time":"2019-12-19T00:26:27.000Z","remove_flag":"\u0000","update_time":"2019-12-31T08:55:08.000Z","matching_division":null,"is_add_wechat":null,"stylist_id":3,"photo":["https://wx.qlogo.cn/mmopen/vi_32/6nwhmVyMVObLpqGDicoWyIx9GoYLK6GrTfUBOgNvS9a4uNSicKjib5mpQTWqsWJ4NJE7b0q9JspV02fLg7yibFPRWg/132","https://image.wetry.shop/member/4707/undefinedeaa163e1-881f-4f2a-8377-cdfc76cf810e","https://image.wetry.shop/member/4707/undefined61ced4b1-0c01-4913-a8e6-7a292de30b7d","https://image.wetry.shop/member/4707/undefineda820fe29-e3a7-408d-a549-e1b972023fbf","https://image.wetry.shop/member/4707/undefined76e93715-404c-4b6a-bab8-4f198b8472d1","https://image.wetry.shop/member/4707/undefined6a52bf73-035b-42ce-8356-d0a7627b6d5a","https://image.wetry.shop/member/4707/undefined03cc02c9-9f9c-4a13-aa0b-2d4b4df12188","https://image.wetry.shop/member/4707/undefined46c3841d-1a7e-426b-944f-7ba349cc3f8b"],"style":["合格"],"sel_style":["学院派少女","优衣库女孩"],"age":21,"marriage":["单身"],"occupation":["学生","大学在读"],"heigth":"157","weight":"57","cup":"C","up_size":"M","low_size":"27/2尺"},
+      order: null,
+    },
+  })
+</script></body>
+</html>

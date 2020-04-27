@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_ute3jgVJID">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_ute3jgVJID',
+    data: {
+      user: {"id":4742,"phone":"15735044720","login_count":37,"last_login_time":"2020-03-12T21:56:58.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74gYCzDXIt-vzJS-SQdzJiRc","cert_name":null,"cert_no":null,"code":"4be4a159d2554db9bf8efd8bfcc0a959","wx_language":"zh_CN","wx_nickname":"张卓宇","wx_gender":"2","wx_province":"山西","wx_city":"运城","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/zYBuEL2iab2URIsXeSIlVt409EzHOr9WfPhnYQyrNSk1b9trGBwzFbYM6m7iawBibWtiaRecx1I3FzAqA0QQfoZiayQ/132","wx_unionid":null,"create_time":"2019-12-19T00:52:39.000Z","remove_flag":"\u0000","update_time":"2020-03-12T21:56:58.000Z","matching_division":6,"is_add_wechat":"\u0001","stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/zYBuEL2iab2URIsXeSIlVt409EzHOr9WfPhnYQyrNSk1b9trGBwzFbYM6m7iawBibWtiaRecx1I3FzAqA0QQfoZiayQ/132","https://image.wetry.shop/member/4742/undefined9e8c6dea-9b03-4c5a-8bfd-7875f77505d4","https://image.wetry.shop/member/4742/undefined70be4e69-a077-479a-a9c2-2ae70e98e67a","https://image.wetry.shop/member/4742/undefined22f67da4-e562-4769-b48b-8b574d46ca18","https://image.wetry.shop/member/4742/undefined69d27048-6f22-4d60-a1ee-fa78b2e9a5c1","https://image.wetry.shop/member/4742/undefined8fed554b-ede4-417a-9682-0e1a2914b574"],"style":["V0","合格"],"sel_style":["清新田园","时髦潮酷","美式复古","时装周街拍girl","优衣库女孩"],"age":23,"marriage":["单身"],"occupation":["学生","研究生在读"],"heigth":"172","weight":"62","cup":"C","up_size":"L","low_size":"29/2尺2"},
+      order: {"id":2653,"order_no":"19121901667","box_num":1,"box_no":null,"type":2,"member_id":4742,"message":"毛衣打底衫，裤装裙装均可，碍于只能选三个，打算过年穿的，北方。","expect_day":"2020-01-05T00:00:00.000Z","province":"陕西省","city":"西安市","district":"长安区","addr":"西北工业大学长安校区","addr_username":"张卓宇","addr_phone":"18729081109","total":3,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-01-09T17:09:00.000Z","package_flag":null,"logistics_no":"SF1161090580950","return_logistics_no":"7200944978","send_time":"2020-01-07T14:53:43.000Z","returned_time":null,"complete_time":"2020-01-18T17:57:57.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"日常工作,休闲聚会","like_category":"winter,毛衣,大衣,卫衣","like_category_detail":null,"stylist_id":6,"sign":null,"remark":null,"create_time":"2019-12-19T18:55:18.000Z","create_at":1,"update_time":"2020-01-18T17:57:57.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2020-01-09T12:50:24.000Z","appointment_time":"2020-01-11T15:00:00.000Z","dislike_category":"winter,","images":"","color":null,"hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

@@ -74,7 +74,7 @@ module WTCube
         file.write(IRuby.table(table,maxrows:999999,maxcols:999999).object)
       end
     else
-      IRuby.display IRuby.table(table,maxrows:30,maxcols:15)
+      IRuby.display IRuby.table(table,maxrows:100,maxcols:15)
       nil
     end
   end

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_ByxtrjdOyD">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_ByxtrjdOyD',
+    data: {
+      user: {"id":6435,"phone":"13189332695","login_count":19,"last_login_time":"2020-04-15T01:29:16.000Z","source":"B站KOL-丸子","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":"o4k1IxPme05BlR7utvMhurQXA74g","wx_app_openid":"oBHz74ix4HxQL6UBTYdRQ4vf49Xg","cert_name":null,"cert_no":null,"code":"31e499f5bc234e0f8a974308f2cda700","wx_language":"en","wx_nickname":"wood","wx_gender":"2","wx_province":"广东","wx_city":"肇庆","wx_country":"中国","wx_avatar_url":"https://thirdwx.qlogo.cn/mmopen/vi_32/ibc7DhTUVHfuuUQMx66OcT4P3eBEZfaVJ3cZoAicFGiblhaZL4RxLBJrjK28s4icBdTZC1IWTWMHZcvRJVxz0DM1zg/132","wx_unionid":"oGyuKwzk1Srrr5uRO9CjGIeHMuhU","create_time":"2019-12-22T22:37:55.000Z","remove_flag":"\u0000","update_time":"2020-04-15T01:29:16.000Z","matching_division":6,"is_add_wechat":"\u0001","stylist_id":3,"photo":["https://thirdwx.qlogo.cn/mmopen/vi_32/ibc7DhTUVHfuuUQMx66OcT4P3eBEZfaVJ3cZoAicFGiblhaZL4RxLBJrjK28s4icBdTZC1IWTWMHZcvRJVxz0DM1zg/132","https://image.wetry.shop/member/6435/undefined4dae4f80-8a53-48de-a058-0f6e1e4b093f","https://image.wetry.shop/member/6435/undefined907e9504-7f4c-41d1-8ea3-0412ee84f6b4","https://image.wetry.shop/member/6435/undefinedaf79ba49-9683-4519-9114-4a18e5dfeef3","https://image.wetry.shop/member/6435/undefined1c7b002a-c09f-4c60-8297-bccbea7b005e","https://image.wetry.shop/member/6435/undefined5bff6133-bbc5-4aab-9769-89339eaf7116","https://image.wetry.shop/member/6435/undefined1a99befd-2d8a-4131-a696-a6bf05390b0c","https://image.wetry.shop/member/6435/undefined74c0d305-9dbb-4eba-955d-5375000011cf","https://image.wetry.shop/member/6435/undefinedfa5562d3-3e80-4369-8a96-cbbf4d5cf1f0"],"style":["V0","不合格"],"sel_style":["时装周街拍girl","美式复古","轻奢简约OL","设计感OL"],"age":24,"marriage":["恋爱"],"occupation":["法律/商务服务","律师"],"heigth":"164","weight":"53","cup":"B","up_size":"XS/S","low_size":"26/1尺9"},
+      order: {"id":6387,"order_no":"20032901823","box_num":2,"box_no":null,"type":2,"member_id":6435,"message":"","expect_day":"2020-04-11T00:00:00.000Z","province":"广东省","city":"肇庆市","district":"四会市","addr":"大旺高新区旺园街西梯六座","addr_username":"彭晓琳","addr_phone":"13189332695","total":6,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-04-16T19:51:11.000Z","package_flag":null,"logistics_no":"SF1162532532093","return_logistics_no":"7223926270","send_time":"2020-04-14T11:19:19.000Z","returned_time":null,"complete_time":"2020-04-19T14:52:45.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"商务社交,日常工作","like_category":"spring,西装,休闲裤,西装裤","like_category_detail":"spring,西装;休闲裤-长度:九分裤+长裤;西装裤-长度:九分裤","stylist_id":6,"sign":null,"remark":"\u003cp\u003e西装和西装裤目前尺码不符合，需要等两天\u003c/p\u003e","create_time":"2020-03-29T11:12:39.000Z","create_at":1,"update_time":"2020-04-19T14:52:45.000Z","update_at":53,"remove_flag":"\u0000","sign_time":"2020-04-16T18:58:24.000Z","appointment_time":"2020-04-17T11:00:00.000Z","dislike_category":"","images":"https://image.wetry.shop/member/6435/undefined8e15e638-bcb3-4f74-909b-8e84decf911f,https://image.wetry.shop/member/6435/undefinedd055f9e4-6303-47e4-9037-1da8e4b0eb3e,https://image.wetry.shop/member/6435/undefinedef00d728-2111-4268-8e14-c87e80c45fac,https://image.wetry.shop/member/6435/undefinedf4a09e97-03d0-482e-85ef-571bfae04d48,https://image.wetry.shop/member/6435/undefinedb355e8b4-3fa2-4e2a-831d-d95f89de8131,https://image.wetry.shop/member/6435/undefined18775258-857c-48a8-91e0-4ef88c089d16,https://image.wetry.shop/member/6435/undefinedee0e3b9d-1745-43f1-99aa-3a00bc67c92f","color":"","hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

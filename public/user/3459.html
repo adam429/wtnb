@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_Kfj3VGmn6b">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_Kfj3VGmn6b',
+    data: {
+      user: {"id":3459,"phone":"13203716439","login_count":22,"last_login_time":"2020-01-16T12:42:54.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":"o4k1IxImQhM37-7e35B8SsdhkhgU","wx_app_openid":"oBHz74u4eL5Is5z9VCrSsr08pVWg","cert_name":null,"cert_no":null,"code":"52aa185b57614537a1e47ad104b717a6","wx_language":"zh_CN","wx_nickname":"Carol","wx_gender":"0","wx_province":"","wx_city":"","wx_country":"","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLBia25PUps4TbonFLjriaFUjlSYXAIIcotEoPTUSfLuFBKb2ZhPibbx3Kob0Q0JzpUwD0FJkGaLCWiaQ/132","wx_unionid":"oGyuKw4ugDmR_SSiB0IDgmjKqkb4","create_time":"2019-12-18T20:57:55.000Z","remove_flag":"\u0000","update_time":"2020-01-16T12:42:54.000Z","matching_division":9,"is_add_wechat":"\u0001","stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLBia25PUps4TbonFLjriaFUjlSYXAIIcotEoPTUSfLuFBKb2ZhPibbx3Kob0Q0JzpUwD0FJkGaLCWiaQ/132","https://image.wetry.shop/member/3459/undefinedf38a7997-6bee-4286-891d-df546c58c908","https://image.wetry.shop/member/3459/undefined0730e34d-b9f0-464d-804a-ed00201aa65d","https://image.wetry.shop/member/3459/undefined08f86c12-68ee-4198-a54f-141879d5673c","https://image.wetry.shop/member/3459/undefined7f29caff-62d7-451d-9be4-aecf7965b06e","https://image.wetry.shop/member/3459/undefined25a16353-f802-4dc7-9e47-7d5b65fbf72e","https://image.wetry.shop/member/3459/undefined47a3a4c2-5619-4d2f-a45c-0fca3f81517a","https://image.wetry.shop/member/3459/undefined5913e561-91ad-4548-b13b-32b157d8ded2","https://image.wetry.shop/member/3459/undefined17a5d2a1-07e2-4bd3-b599-e4a800ba187b","https://image.wetry.shop/member/3459/undefinedf9d92d09-d045-452e-8ecc-e5402564c57c"],"style":["V0","合格"],"sel_style":["温柔小姐姐","高级名媛OL","设计感OL","暗黑酷女孩","时装周街拍girl"],"age":41,"marriage":["已育"],"occupation":["教育/培训/科研","高级管理层"],"heigth":"160","weight":"49","cup":"A","up_size":"S","low_size":"27/2尺"},
+      order: {"id":3593,"order_no":"19122902607","box_num":2,"box_no":null,"type":2,"member_id":3459,"message":"","expect_day":"2020-01-13T00:00:00.000Z","province":"河南省","city":"郑州市","district":"金水区","addr":"中州大道三全路龙源嘉苑西苑","addr_username":"畅珈","addr_phone":"18569990255","total":5,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-01-16T16:51:22.000Z","package_flag":null,"logistics_no":"SF1161216488894","return_logistics_no":"SF1016458486985","send_time":"2020-01-13T14:57:09.000Z","returned_time":null,"complete_time":"2020-01-19T10:33:09.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,商务社交","like_category":"winter,半裙,连衣裙,大衣","like_category_detail":null,"stylist_id":9,"sign":null,"remark":null,"create_time":"2019-12-29T12:03:53.000Z","create_at":1,"update_time":"2020-01-19T10:33:09.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2020-01-14T18:14:35.000Z","appointment_time":"2020-01-17T11:00:00.000Z","dislike_category":"winter,打底裤袜,牛仔裤,卫衣,羽绒服/棉服,家居服","images":"https://image.wetry.shop/member/3459/undefinedb3d65fa7-636b-49e0-9dbb-39a9e6c0cb3a,https://image.wetry.shop/member/3459/undefined3b880d10-f95b-433c-b6d4-a357f5c0b011,https://image.wetry.shop/member/3459/undefinedb34e3792-0408-459d-802b-f4af583b7c9e,https://image.wetry.shop/member/3459/undefinedea3f2b40-3950-42ac-950c-bde638a990d6,https://image.wetry.shop/member/3459/undefinedfef3fd45-759c-48d1-9801-8618038e31c8,https://image.wetry.shop/member/3459/undefined1321d93e-fe8b-4b9a-84ec-84200cbe46bc,https://image.wetry.shop/member/3459/undefined9944d18f-b1ad-43a4-8394-dd6a94ad0604,https://image.wetry.shop/member/3459/undefined54b35a7c-13a1-4db4-8416-1cea97b4c415,https://image.wetry.shop/member/3459/undefined092bb13d-1237-429d-be45-487fcb6a1587","color":null,"hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_3J3zba4Bdh">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_3J3zba4Bdh',
+    data: {
+      user: {"id":5010,"phone":"18905867909","login_count":18,"last_login_time":"2020-02-03T21:24:11.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":"o4k1IxCGi8W_oMilAoiifYoSLmAg","wx_app_openid":"oBHz74qzCqXFV-CBnO8Oc0EIEHko","cert_name":null,"cert_no":null,"code":"e617d1020ecb4f81ad6e9c9770b2ee05","wx_language":"zh_CN","wx_nickname":"十分美好","wx_gender":"1","wx_province":"","wx_city":"","wx_country":"法罗群岛","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoQgjrOK8IEkbtOjuy36LSN0hoBkibrbzvk9xDhUCXLibPXYzMwtgfUkqRCNvIHnwnJzicgodPRB7WAQ/132","wx_unionid":"oGyuKw8Nptz0UukQ201N4Ofcm0do","create_time":"2019-12-19T09:22:22.000Z","remove_flag":"\u0000","update_time":"2020-02-03T21:24:11.000Z","matching_division":4,"is_add_wechat":"\u0001","stylist_id":3,"photo":["https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoQgjrOK8IEkbtOjuy36LSN0hoBkibrbzvk9xDhUCXLibPXYzMwtgfUkqRCNvIHnwnJzicgodPRB7WAQ/132","https://image.wetry.shop/member/5010/undefinedfcf832ba-7e8a-4712-8d6e-ceaee4feb7ce","https://image.wetry.shop/member/5010/undefined82b1bc3b-09d1-42a9-9ba5-f61f29e6b6a2","https://image.wetry.shop/member/5010/undefineddb0a6b78-10a9-449a-acf9-3754f0173636","https://image.wetry.shop/member/5010/undefinedfb08081e-8bf4-4fab-b52d-522f3b637e19","https://image.wetry.shop/member/5010/undefined7766cc2c-c601-4a1e-a9b4-bc461d78c956","https://image.wetry.shop/member/5010/undefined871e75d5-2860-4abe-831f-16eaea86ac21"],"style":["V0","合格"],"sel_style":["时髦潮酷","轻奢简约OL","高级名媛OL","设计感OL","时装周街拍girl"],"age":31,"marriage":["恋爱"],"occupation":["文化/体育/娱乐","高级管理层"],"heigth":"158","weight":"48","cup":"A","up_size":"M/L","low_size":"27/2尺"},
+      order: {"id":3319,"order_no":"19122302333","box_num":1,"box_no":null,"type":2,"member_id":5010,"message":"质感好的白色大衣，内搭希望有气质一些想要一件大衣和搭配的绸缎光泽的半裙，脱掉大衣后不会怂","expect_day":"2020-01-03T00:00:00.000Z","province":"浙江省","city":"台州市","district":"椒江区","addr":"白云街道赤山路米兰花园放丰巢快递柜","addr_username":"范希","addr_phone":"18905867909","total":5,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-01-06T20:15:03.000Z","package_flag":null,"logistics_no":"SF1161013591346","return_logistics_no":"7198716419","send_time":"2020-01-03T10:46:16.000Z","returned_time":null,"complete_time":"2020-01-09T20:00:10.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"","like_category":"winter,半裙,大衣","like_category_detail":null,"stylist_id":4,"sign":null,"remark":null,"create_time":"2019-12-23T22:28:11.000Z","create_at":1,"update_time":"2020-01-09T20:00:10.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2020-01-05T13:10:01.000Z","appointment_time":"2020-01-07T11:00:00.000Z","dislike_category":"winter,打底裤袜,围巾,羽绒服/棉服,家居服","images":"https://image.wetry.shop/member/5010/undefined8b4f98ea-237c-40af-a703-0fd6ac9f53af","color":null,"hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

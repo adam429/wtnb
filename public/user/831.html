@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_tGA84KEp3G">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_tGA84KEp3G',
+    data: {
+      user: {"id":831,"phone":"18621871685","login_count":85,"last_login_time":"2020-04-24T12:06:35.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74iGVF2QCbbRIJWYrgfrFC90","cert_name":null,"cert_no":null,"code":"6d2c40c5e07a40e6b83a393fdcd54695","wx_language":"zh_CN","wx_nickname":"Vivian Chen","wx_gender":"2","wx_province":"上海","wx_city":"","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epkDTOh9ZAWqEH3eoy4Afqatg30kfq2ZADRkvP7DL7xDibzVPwgTe7rzuIQ282JxknibZ2fjwQGb7PA/132","wx_unionid":"oGyuKw3Yx0eVV4OH7KucydT0PpBU","create_time":"2019-09-26T09:13:05.000Z","remove_flag":"\u0000","update_time":"2020-04-24T12:06:35.000Z","matching_division":4,"is_add_wechat":"\u0001","stylist_id":3,"photo":["https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epkDTOh9ZAWqEH3eoy4Afqatg30kfq2ZADRkvP7DL7xDibzVPwgTe7rzuIQ282JxknibZ2fjwQGb7PA/132","https://image.wetry.shop/member/831/b71170f5decd42ce85663de63f7c3d17","https://image.wetry.shop/member/831/undefined739471f4-4e8f-45a8-8fb0-edc4f45c0c87","https://image.wetry.shop/member/831/undefined0af619c2-e994-41d3-b997-6bf97780a79e","https://image.wetry.shop/member/831/undefined577a48ee-5afe-4aab-a446-e7ff6218ae29","https://image.wetry.shop/member/831/undefined988d837a-b851-412d-9b06-4480f402be71"],"style":["大女装","传统淑女","V2","合格"],"sel_style":["韩系淑女","温柔小姐姐","轻奢简约OL","高级名媛OL","设计感OL","时装周街拍girl"],"age":47,"marriage":["已育"],"occupation":["其他","职员"],"heigth":"168","weight":"56","cup":"B","up_size":"M","low_size":"27/2尺"},
+      order: {"id":4445,"order_no":"20022500161","box_num":6,"box_no":null,"type":2,"member_id":831,"message":"","expect_day":"2020-03-22T00:00:00.000Z","province":"上海市","city":"上海市","district":"闵行区","addr":"申南路739号","addr_username":"陈 Vivian","addr_phone":"18621871685","total":6,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-03-24T09:58:36.000Z","package_flag":null,"logistics_no":"SF1162263508698","return_logistics_no":"7214598933","send_time":"2020-03-22T10:43:26.000Z","returned_time":null,"complete_time":"2020-03-25T17:57:35.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,度假旅行","like_category":"","like_category_detail":"","stylist_id":4,"sign":null,"remark":null,"create_time":"2020-02-25T15:02:51.000Z","create_at":1,"update_time":"2020-03-25T17:57:35.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2020-03-23T14:25:53.000Z","appointment_time":"2020-03-24T15:00:00.000Z","dislike_category":"","images":"","color":"","hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

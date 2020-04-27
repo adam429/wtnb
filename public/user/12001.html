@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_9s7NEzks2a">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_9s7NEzks2a',
+    data: {
+      user: {"id":12001,"phone":"17863116087","login_count":7,"last_login_time":"2020-04-22T19:37:26.000Z","source":"20-15-KOL-韦思嘉","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74v71z6URK3QGFVZ_F5lZyxA","cert_name":null,"cert_no":null,"code":"1ab1cc4418b44c948c9886b8a1777122","wx_language":"zh_CN","wx_nickname":"Clementine","wx_gender":"2","wx_province":"柏林","wx_city":"","wx_country":"德国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/mDQK0pEhREMuMq973MQUfy1SXZzZ1jvv13YicbEBDa8oq1MZnUHibdWygVvYCFAaDKIp1RmyPDe8KkQ0qFaH4LWQ/132","wx_unionid":"oGyuKwxaw8G0F2z0AwKmSxehJAYc","create_time":"2020-03-23T10:45:11.000Z","remove_flag":"\u0000","update_time":"2020-04-22T19:37:26.000Z","matching_division":6,"is_add_wechat":"\u0001","stylist_id":3,"photo":["https://wx.qlogo.cn/mmopen/vi_32/mDQK0pEhREMuMq973MQUfy1SXZzZ1jvv13YicbEBDa8oq1MZnUHibdWygVvYCFAaDKIp1RmyPDe8KkQ0qFaH4LWQ/132","https://image.wetry.shop/member/12001/undefined50daf6ab-e386-46e8-9f84-50067214a8ac","https://image.wetry.shop/member/12001/undefined22323396-cc30-43d3-8db6-514fe47b3b39","https://image.wetry.shop/member/12001/undefined13dcd9c0-9920-432b-89e5-38813fe38204","https://image.wetry.shop/member/12001/undefined6328f141-89a7-4706-bce1-877f0fb8a8b5"],"style":["V1","合格"],"sel_style":["韩系淑女","日系森女","学院派少女","法式复古"],"age":21,"marriage":["恋爱"],"occupation":["学生","大学在读"],"heigth":"160","weight":"54","cup":"B","up_size":"S/M","low_size":"27/2尺"},
+      order: {"id":6979,"order_no":"20041800521","box_num":2,"box_no":null,"type":2,"member_id":12001,"message":"希望收到一份可以送给闺蜜做生日礼物的手链或手镯，价格在100—300之间。闺蜜年龄21，温柔时尚的女大学生，手腕很细。\n希望能收到开学穿的日常装或者约会装。\n脸型较圆，服装尽量避免高领。\n胯宽臀部较大，希望服装能遮胯，不显臀部。\n想要春夏服装。","expect_day":"2020-04-29T00:00:00.000Z","province":"广东省","city":"佛山市","district":"顺德区","addr":"北滘镇三洪奇美的海岸花园大学生公寓","addr_username":"辛佳蓉","addr_phone":"17863116087","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":"2020-04-29T00:00:00.000Z","returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,度假旅行","like_category":"spring,首饰,连衣裙","like_category_detail":"spring,首饰;连衣裙-长度:及膝裙","stylist_id":6,"sign":null,"remark":null,"create_time":"2020-04-18T22:54:38.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"风衣,家居服,毛衣,大衣","images":"","color":"浅色","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

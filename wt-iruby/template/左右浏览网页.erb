@@ -1,0 +1,58 @@
+<% id =  SecureRandom.alphanumeric(10) %>
+<div id="app_<%=id %>">
+<el-container>
+  <el-container>
+    <el-header>
+      <el-row :gutter="24">
+        <el-col :span=4>
+          <el-button icon="el-icon-caret-left" circle v-on:click="left"></el-button>
+          <el-button icon="el-icon-caret-right" circle v-on:click="right"></el-button>
+        </el-col>
+
+        <el-col :span=20>
+          <h1>[{{cur_url}}] {{ url[cur_url] }}</h1>
+        </el-col>
+      </el-row>
+    </el-header>
+    <el-main>
+      <el-divider></el-divider>
+      <iframe v-bind:src="url[cur_url]" width="1400" height="800"></iframe>
+    </el-main>
+
+  </el-container>
+</el-container>
+</div>
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_<%=id %>',
+    data: {
+      url: <%= url.to_json %>,
+      cur_url: 0
+    },
+    methods: {
+      left: function() {
+        this.cur_url -= 1
+        if (this.cur_url<0) this.cur_url = this.url.length-1
+      },
+      right: function() {
+        this.cur_url += 1
+        if (this.cur_url>=this.url.length) this.cur_url = 0
+      },
+      keyhandler: function() {
+        console.log(event.keyCode)
+        if (event.keyCode == 37) {
+        	this.left()
+        } else if (event.keyCode == 39) {
+        	this.right()
+        }
+      }
+    },
+    mounted () {
+      document.addEventListener("keyup", this.keyhandler);
+    }
+  })
+</script>

@@ -37,3 +37,4 @@ yarn-debug.log*
 
 /wt-iruby/.ipynb_checkpoints
 /wt-iruby/output
+/wt-iruby/store

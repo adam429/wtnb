@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_v6kfF3h0rg">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_v6kfF3h0rg',
+    data: {
+      user: {"id":12765,"phone":"13818615525","login_count":4,"last_login_time":"2020-04-22T13:27:02.000Z","source":"20-04-KOL-Michelle伊伊","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74sQR49rDmn2DUAqQOisbcL4","cert_name":null,"cert_no":null,"code":"8489dbf99d65488bbf5b6d7aaaea22fe","wx_language":"zh_CN","wx_nickname":"ccYyy","wx_gender":"2","wx_province":"上海","wx_city":"浦东新区","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLKib7YoTt6X3iaMYQE2ydYdY0qWHfZycciaPrMl2K7iasWvQhkEKweM5juZll7eQSBadqcQqwtk2V7sA/132","wx_unionid":"oGyuKwwEhL_V9e1nx-frK90JLPe8","create_time":"2020-04-12T00:31:08.000Z","remove_flag":"\u0000","update_time":"2020-04-22T13:27:02.000Z","matching_division":5,"is_add_wechat":null,"stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLKib7YoTt6X3iaMYQE2ydYdY0qWHfZycciaPrMl2K7iasWvQhkEKweM5juZll7eQSBadqcQqwtk2V7sA/132","https://image.wetry.shop/member/12765/undefined0bbc37d9-cb30-46a5-a809-c0c57cf4c33a","https://image.wetry.shop/member/12765/undefined73e3b081-f009-4c87-90c9-704835fb6657","https://image.wetry.shop/member/12765/undefined7d602cce-d788-48bd-a713-a02dad9405e2","https://image.wetry.shop/member/12765/undefinedb44a12c1-ae55-4b11-9e1c-93f4647a78cb"],"style":["合格"],"sel_style":["街头潮酷","暗黑酷女孩","学院派少女"],"age":25,"marriage":["恋爱"],"occupation":["学生","研究生在读"],"heigth":"160","weight":"57","cup":"E","up_size":"M","low_size":"26/1尺9"},
+      order: {"id":6994,"order_no":"20041900536","box_num":1,"box_no":null,"type":2,"member_id":12765,"message":"当季","expect_day":"2020-04-25T00:00:00.000Z","province":"上海市","city":"上海市","district":"浦东新区","addr":"浦城路377弄10号楼1802室","addr_username":"蔡颖妍","addr_phone":"13818615525","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":null,"returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,日常工作","like_category":"spring,","like_category_detail":"spring,","stylist_id":5,"sign":null,"remark":null,"create_time":"2020-04-19T16:05:22.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"风衣,衬衫,开衫","images":"","color":"","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

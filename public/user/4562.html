@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_YMKSJtrGK6">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_YMKSJtrGK6',
+    data: {
+      user: {"id":4562,"phone":"18992229622","login_count":9,"last_login_time":"2020-02-16T22:32:52.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":"o4k1IxG_8VZgAbulNssRVqiN3JiQ","wx_app_openid":"oBHz74gm5YVMi8hwygWnF6uAuZ30","cert_name":null,"cert_no":null,"code":"f32a4691cf6b4abbad988c9653076be3","wx_language":"zh_CN","wx_nickname":"vvvvv","wx_gender":"2","wx_province":"华盛顿","wx_city":"西雅图","wx_country":"美国","wx_avatar_url":"https://thirdwx.qlogo.cn/mmopen/vi_32/Q3auHgzwzM4dDcHyqxiaXulrXvrrLrr3URChNaWKiaDjc25grqJKkcdTNeMpw4g3ob9mk54iankzLSJ0WS6CPTyEg/132","wx_unionid":"oGyuKw1LDXAxrP61FYF6A-ZsiYx4","create_time":"2019-12-18T23:38:55.000Z","remove_flag":"\u0000","update_time":"2020-02-16T22:32:52.000Z","matching_division":null,"is_add_wechat":"\u0001","stylist_id":1,"photo":["https://thirdwx.qlogo.cn/mmopen/vi_32/Q3auHgzwzM4dDcHyqxiaXulrXvrrLrr3URChNaWKiaDjc25grqJKkcdTNeMpw4g3ob9mk54iankzLSJ0WS6CPTyEg/132","https://image.wetry.shop/member/4562/undefined9c96a422-f015-49cc-bbee-4fb308ea177b","https://image.wetry.shop/member/4562/undefined9c55ef2e-497a-4bad-b431-ea79ca72e7b1","https://image.wetry.shop/member/4562/undefined3f7f4038-b62d-46df-9d18-1a899d441c18","https://image.wetry.shop/member/4562/undefined57ff2510-e7d9-4451-bc41-a7df93bd9347","https://image.wetry.shop/member/4562/undefined79f63ec4-24a2-404b-b2c8-0db666af184e","https://image.wetry.shop/member/4562/undefined3edc6758-ffa3-4289-9d00-f1bf69327b02"],"style":["合格"],"sel_style":["时髦潮酷","高级名媛OL","设计感OL","时装周街拍girl"],"age":50,"marriage":["已育"],"occupation":["金融/投资/银行/保险/财务/咨询","经纪人/顾问"],"heigth":"158","weight":"64","cup":"C","up_size":"L","low_size":"31/2尺4"},
+      order: null,
+    },
+  })
+</script></body>
+</html>

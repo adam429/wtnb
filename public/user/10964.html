@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_H7yQy7y2c5">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_H7yQy7y2c5',
+    data: {
+      user: {"id":10964,"phone":"13255668805","login_count":6,"last_login_time":"2020-04-23T16:03:49.000Z","source":"20-15-KOL-韦思嘉","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74nFtByHICGMsdrtUyMrizhE","cert_name":null,"cert_no":null,"code":"f1ced41ca5194f8cbf36b380d219f115","wx_language":"en","wx_nickname":"Sunny XU","wx_gender":"2","wx_province":"维多利亚","wx_city":"","wx_country":"澳大利亚","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/4vNosr1iajShWwWL84tVPico2ue0OUqL048pFWWfQYJ4uvnVpbVJThcw6E8ZUb6CiaAnAWLz1Gce52Wyb0VUEfyjw/132","wx_unionid":"oGyuKwyD7QMTWxxCrIOSQa1ShsHY","create_time":"2020-03-15T20:05:16.000Z","remove_flag":"\u0000","update_time":"2020-04-23T16:03:49.000Z","matching_division":4,"is_add_wechat":"\u0001","stylist_id":3,"photo":["https://wx.qlogo.cn/mmopen/vi_32/4vNosr1iajShWwWL84tVPico2ue0OUqL048pFWWfQYJ4uvnVpbVJThcw6E8ZUb6CiaAnAWLz1Gce52Wyb0VUEfyjw/132","https://image.wetry.shop/member/10964/undefined7e6828cd-6a8f-412c-9c61-0b9f4c99287b","https://image.wetry.shop/member/10964/undefined4e4a0074-913d-45db-83a3-eb8fbc918807","https://image.wetry.shop/member/10964/undefined8cf52bfd-23d2-49c8-9a52-ef9987b25fa2","https://image.wetry.shop/member/10964/undefinedd7476879-ca9b-41ce-b7f3-83537c8a267c","https://image.wetry.shop/member/10964/undefined016e3ed1-af4c-4d3c-92df-dd6752d62ec2"],"style":["VIP用户","合格"],"sel_style":["学院派少女","超A时髦girl","街头潮酷"],"age":24,"marriage":["单身"],"occupation":["金融/投资/银行/保险/财务/咨询","精算师/量化分析师"],"heigth":"162","weight":"52","cup":"A","up_size":"S","low_size":"27/2尺"},
+      order: {"id":6599,"order_no":"20040500141","box_num":1,"box_no":null,"type":2,"member_id":10964,"message":"如果是裙子 可以希望正好露出脚踝，因为小腿线条不好看。 比较想尝试法式的碎花长裙（配皮衣和皮靴比如）或者sijia的这件半裙（下方照片）。如果是西装希望可以收腰。如果有首饰搭配就更好了（本人没有耳洞，一般用耳夹）","expect_day":"2020-04-16T00:00:00.000Z","province":"山东省","city":"威海市","district":"环翠区","addr":"文化中路52号文化名居生活小区 西门 （9号楼）","addr_username":"徐冀珩","addr_phone":"13255668805","total":6,"select_num":4,"amount":"1022.0","discount":85,"discount_paid":"217.3","amount_real":"804.7","amount_paid":"804.7","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-04-20T10:57:57.000Z","package_flag":null,"logistics_no":"SF1162560001348","return_logistics_no":"7224994644","send_time":"2020-04-16T18:16:03.000Z","returned_time":null,"complete_time":"2020-04-23T16:43:11.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,日常工作","like_category":"spring,西装,半裙,连衣裙","like_category_detail":"spring,西装;半裙-长度:九分裙;连衣裙-长度:九分裙","stylist_id":4,"sign":null,"remark":"\u003cp\u003esijia同款T+半裙\u003c/p\u003e","create_time":"2020-04-05T15:30:32.000Z","create_at":1,"update_time":"2020-04-23T16:43:11.000Z","update_at":56,"remove_flag":"\u0000","sign_time":"2020-04-18T12:36:00.000Z","appointment_time":"2020-04-20T19:00:00.000Z","dislike_category":"卫衣,风衣,家居服","images":"https://image.wetry.shop/member/10964/undefined43a53b90-abb7-4f87-8a11-ad48d622d05a","color":"暖色,深色,浅色","hold_flag":"\u0000","match_count":1,"active_coupon_id":6904},
+    },
+  })
+</script></body>
+</html>

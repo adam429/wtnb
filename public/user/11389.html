@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_KqSVinPsEU">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_KqSVinPsEU',
+    data: {
+      user: {"id":11389,"phone":"15048821032","login_count":2,"last_login_time":"2020-04-13T10:40:46.000Z","source":"20-15-KOL-韦思嘉","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74q0CcAPC9cwc7CSkzd9o6HU","cert_name":null,"cert_no":null,"code":"6689d3d3f2c04dbba095cd40d35ffcf3","wx_language":"zh_CN","wx_nickname":"鱼多多","wx_gender":"2","wx_province":"内蒙古","wx_city":"巴彦淖尔","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eowjunkLicCxLw4loIoC0iaWYNexwoeVZNLrWtIUxoibfvrmcZn7LLZeKomTeHP8ibdIPjFhJ8kiaTL8Tg/132","wx_unionid":"oGyuKw3yonyU3yL7fGBZUK2rpap0","create_time":"2020-03-16T07:12:34.000Z","remove_flag":"\u0000","update_time":"2020-04-13T10:40:46.000Z","matching_division":null,"is_add_wechat":null,"stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eowjunkLicCxLw4loIoC0iaWYNexwoeVZNLrWtIUxoibfvrmcZn7LLZeKomTeHP8ibdIPjFhJ8kiaTL8Tg/132","https://image.wetry.shop/member/11389/undefined7496ab1f-9da9-49ba-ab99-2cd32adc9467","https://image.wetry.shop/member/11389/undefineda745249d-ed4d-4927-89b2-113561b008c4","https://image.wetry.shop/member/11389/undefinede4e2e9b2-4989-47c9-8e05-f6a3a2db052d","https://image.wetry.shop/member/11389/undefined73003fd3-5164-49c1-90ac-b7319cdc5a87","https://image.wetry.shop/member/11389/undefined310698ec-421a-46df-bf7c-0a193d7204e4","https://image.wetry.shop/member/11389/undefined7b3cd9b6-ebea-4f13-a6aa-fe1dbd0a9691"],"style":["合格"],"sel_style":["可盐可甜","轻奢简约OL","欧美高街girl","优衣库女孩"],"age":27,"marriage":["已育"],"occupation":["教育/培训/科研","小学/中学教师"],"heigth":"162","weight":"55","cup":"D","up_size":"M/L","low_size":"28/2尺1"},
+      order: null,
+    },
+  })
+</script></body>
+</html>

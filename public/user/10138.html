@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_ZOcUHThhjw">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_ZOcUHThhjw',
+    data: {
+      user: {"id":10138,"phone":"15807358347","login_count":18,"last_login_time":"2020-04-24T10:44:36.000Z","source":"little nothing","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74jQkWckPrNx3AxuZl9QnfGE","cert_name":null,"cert_no":null,"code":"569d295c782c4440acbc35c314477f86","wx_language":"zh_CN","wx_nickname":"娓娓","wx_gender":"2","wx_province":"湖南","wx_city":"郴州","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/WjssVI9hRKUgHJ9GwEXz0prRGibnkmDUCFHHoWsblAQ9S8EDt2Az3LlNhkhaibMneKerwFa9OBCALQtypTSY6aug/132","wx_unionid":"oGyuKw6SAh1W8ekq5MOIxwsGLCJI","create_time":"2020-03-11T18:26:24.000Z","remove_flag":"\u0000","update_time":"2020-04-24T10:44:36.000Z","matching_division":3,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/WjssVI9hRKUgHJ9GwEXz0prRGibnkmDUCFHHoWsblAQ9S8EDt2Az3LlNhkhaibMneKerwFa9OBCALQtypTSY6aug/132","https://image.wetry.shop/member/10138/undefinedc9cdcbb3-5424-4658-99cd-1ebfb62d54ba","https://image.wetry.shop/member/10138/undefined0bdda24d-70e8-4dbe-a144-97e490d4561d","https://image.wetry.shop/member/10138/undefinedd97cdebf-7d56-47b4-845c-d42175e5bdae","https://image.wetry.shop/member/10138/undefinedb41424bb-7db3-4bf4-80ec-dacf1a374c9d","https://image.wetry.shop/member/10138/undefined3b355191-d6f7-4549-963c-2b990e049e43","https://image.wetry.shop/member/10138/undefined633321e6-a955-4272-905c-a2e1ac180e56","https://image.wetry.shop/member/10138/undefinedfa71b8b6-2e9e-4b17-843d-e25f9ff87671"],"style":["VIP用户","合格"],"sel_style":["清新田园","韩系淑女","温柔小姐姐","高级名媛OL","设计感OL"],"age":24,"marriage":["单身"],"occupation":["医疗/卫生/制药","医药销售"],"heigth":"158","weight":"50","cup":"B","up_size":"XS/S","low_size":"26/1尺9"},
+      order: {"id":6747,"order_no":"20041000289","box_num":2,"box_no":null,"type":2,"member_id":10138,"message":"","expect_day":"2020-04-17T00:00:00.000Z","province":"湖南省","city":"郴州市","district":"苏仙区","addr":"恒大帝景26栋603","addr_username":"谭娓","addr_phone":"15807358347","total":7,"select_num":4,"amount":"1692.0","discount":100,"discount_paid":"64.0","amount_real":"1628.0","amount_paid":"1628.0","amount_supplement":null,"exception_comment":null,"status":40,"last_pay_time":"2020-04-22T16:36:44.000Z","package_flag":null,"logistics_no":"SF1162565313526","return_logistics_no":"7226827974","send_time":"2020-04-17T11:03:20.000Z","returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会","like_category":"spring,连衣裙","like_category_detail":"spring,连衣裙-长度:短裙+七分裙+九分裙","stylist_id":3,"sign":null,"remark":null,"create_time":"2020-04-10T19:13:36.000Z","create_at":1,"update_time":"2020-04-24T15:07:01.000Z","update_at":-1,"remove_flag":"\u0000","sign_time":"2020-04-19T10:40:10.000Z","appointment_time":"2020-04-24T15:00:00.000Z","dislike_category":"卫衣,风衣,家居服,T恤,西装,打底衫,毛衣,开衫,牛仔裤","images":"","color":"浅色","hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

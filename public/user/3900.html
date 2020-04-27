@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_sxMZSEUOGq">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_sxMZSEUOGq',
+    data: {
+      user: {"id":3900,"phone":"13826211651","login_count":7,"last_login_time":"2019-12-29T22:34:24.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":null,"wx_app_openid":"oBHz74i5U_zeeZdR_woFCBD1vwJg","cert_name":null,"cert_no":null,"code":"d0863b74b7dc402cb98eb3d672794e32","wx_language":"zh_CN","wx_nickname":"Oo～","wx_gender":"2","wx_province":"布拉","wx_city":"","wx_country":"意大利","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/iaAVWEsIJUkBlGDpM1hW5t8eBypy4wR8IUKweT8Uq50ucibniayXp7LoVkp72QWJqC1rzqfvnibgYCEX5Y3Pn6sxgw/132","wx_unionid":null,"create_time":"2019-12-18T21:43:48.000Z","remove_flag":"\u0000","update_time":"2019-12-29T22:34:24.000Z","matching_division":7,"is_add_wechat":null,"stylist_id":null,"photo":["https://wx.qlogo.cn/mmopen/vi_32/iaAVWEsIJUkBlGDpM1hW5t8eBypy4wR8IUKweT8Uq50ucibniayXp7LoVkp72QWJqC1rzqfvnibgYCEX5Y3Pn6sxgw/132","https://image.wetry.shop/member/3900/undefined37c439b0-df38-4c66-8fa1-bcc75b95f133","https://image.wetry.shop/member/3900/undefineda801c027-aba3-4562-9ecd-052c301a8edf","https://image.wetry.shop/member/3900/undefined532a1d3e-1c8f-45cc-9960-81dbb1913df7","https://image.wetry.shop/member/3900/undefined6522e0b5-267a-4559-9723-59b5bd8e727e","https://image.wetry.shop/member/3900/undefined432c5fe3-7723-4aad-8668-442d5a8a5da9","https://image.wetry.shop/member/3900/undefined8ac277a1-e8ee-4334-a43d-395dc3a7368f","https://image.wetry.shop/member/3900/undefinedcfdbec9e-8e8b-41d6-bb25-26f62c74c834","https://image.wetry.shop/member/3900/undefinedec11ffc4-41ec-49b3-8184-bbf0c6a20eb2","https://image.wetry.shop/member/3900/undefined536f17b7-d0de-4c59-af7e-89cdfb178e79"],"style":["不合格"],"sel_style":["时髦潮酷","日系森女","学院派少女","暗黑酷女孩"],"age":23,"marriage":["恋爱"],"occupation":["教育/培训/科研","其他"],"heigth":"165","weight":"45","cup":"A","up_size":"XS/S","low_size":"28/2尺1"},
+      order: null,
+    },
+  })
+</script></body>
+</html>

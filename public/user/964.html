@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_DPFBekhOvn">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_DPFBekhOvn',
+    data: {
+      user: {"id":964,"phone":"15800762767","login_count":10,"last_login_time":"2019-10-16T18:55:02.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":null,"wx_app_openid":"oBHz74tyPV6VUvZVvagiodXoFCUI","cert_name":null,"cert_no":null,"code":"93564eba79574dbcb72e034836a612d7","wx_language":"zh_CN","wx_nickname":"明光C.C","wx_gender":"2","wx_province":"上海","wx_city":"浦东新区","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eojpOwAHZlHL8pKpMuf0bTaLFBIfleCO0O68YtLw6HHm94Jia6Uic0jZ4Xibia0lcK81fZMmRzOOSqiabQ/132","wx_unionid":null,"create_time":"2019-10-01T23:57:34.000Z","remove_flag":"\u0000","update_time":"2019-10-16T18:55:02.000Z","matching_division":null,"is_add_wechat":"\u0001","stylist_id":null,"photo":["https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eojpOwAHZlHL8pKpMuf0bTaLFBIfleCO0O68YtLw6HHm94Jia6Uic0jZ4Xibia0lcK81fZMmRzOOSqiabQ/132","https://image.wetry.shop/member/964/c8d3b4acf42946cdb7bc962331732b1f"],"style":["非正式职业","V0","不合格"],"sel_style":["韩系淑女","高级名媛OL","设计感OL"],"age":31,"marriage":["已婚"],"occupation":["其他"],"heigth":"157","weight":"46","cup":"B","up_size":"XS/S","low_size":"25/1尺8"},
+      order: {"id":364,"order_no":"19100300005","box_num":1,"box_no":null,"type":2,"member_id":964,"message":null,"expect_day":"2019-10-10T00:00:00.000Z","province":"北京市","city":"北京市","district":"丰台区","addr":"城南嘉园益嘉园1号楼2单元101室","addr_username":"魏娓娓","addr_phone":"15800762767","total":5,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2019-10-13T10:49:59.000Z","package_flag":null,"logistics_no":"SF1160397506671","return_logistics_no":"7163784504","send_time":"2019-10-10T18:19:12.000Z","returned_time":null,"complete_time":"2019-10-16T18:35:23.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"度假,日常","like_category":"autumn,卫衣,打底衫","like_category_detail":null,"stylist_id":5,"sign":null,"remark":null,"create_time":"2019-10-03T02:00:00.000Z","create_at":1,"update_time":"2019-10-16T18:35:23.000Z","update_at":11,"remove_flag":"\u0000","sign_time":"2019-10-12T13:00:01.000Z","appointment_time":"2019-10-14T15:00:00.000Z","dislike_category":null,"images":null,"color":null,"hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

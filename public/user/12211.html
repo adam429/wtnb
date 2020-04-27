@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_QUVr2geP8p">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_QUVr2geP8p',
+    data: {
+      user: {"id":12211,"phone":"13680067056","login_count":6,"last_login_time":"2020-04-22T16:54:54.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74rRQyWHOYbZF30nB5e20E2w","cert_name":null,"cert_no":null,"code":"b37eddd1e5684d48b5af26351a4e016d","wx_language":"zh_CN","wx_nickname":"郭奕清","wx_gender":"2","wx_province":"广东","wx_city":"东莞","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKjGM1vedero83zcKfY75F8pCnzF3O1QdmpKf7tAwMiaRFDxASgayDMoJAqHpnwkfK1l2CNSQ0d6WA/132","wx_unionid":"oGyuKwzRt4mmyXQdOIvzbaLhSOfw","create_time":"2020-03-27T21:21:53.000Z","remove_flag":"\u0000","update_time":"2020-04-22T16:54:54.000Z","matching_division":3,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKjGM1vedero83zcKfY75F8pCnzF3O1QdmpKf7tAwMiaRFDxASgayDMoJAqHpnwkfK1l2CNSQ0d6WA/132","https://image.wetry.shop/member/12211/undefined1651d19a-84ea-4088-9dba-985c5e6677fb","https://image.wetry.shop/member/12211/undefined7af5606c-1482-4a1b-a14c-4a072f14160b"],"style":["合格"],"sel_style":["法式复古","设计感OL"],"age":24,"marriage":["恋爱"],"occupation":["商贸/批发零售/消费/制造","硬件/制造/技术工程师"],"heigth":"159","weight":"49","cup":"B","up_size":"XS/S","low_size":"26/1尺9"},
+      order: {"id":6335,"order_no":"20032701771","box_num":1,"box_no":null,"type":2,"member_id":12211,"message":"","expect_day":"2020-04-23T00:00:00.000Z","province":"广东省","city":"广州市","district":"从化区","addr":"鳌头镇鳌头新市场长桥兽药店","addr_username":"小郭","addr_phone":"13680067056","total":7,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":25,"last_pay_time":null,"package_flag":null,"logistics_no":"SF1162626978132","return_logistics_no":null,"send_time":"2020-04-23T10:01:28.000Z","returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,日常工作","like_category":"spring,半裙,休闲裤,西装裤","like_category_detail":"spring,半裙-长度:及膝裙+七分裙+九分裙;休闲裤-长度:九分裤;西装裤-长度:九分裤+长裤","stylist_id":3,"sign":null,"remark":"\u003cpre class=\"ql-syntax\" spellcheck=\"false\"\u003e不想要那种需要把上衣塞进裤子或裙子里的搭配，想要寄条百搭的腰带或者腰封    尽量都要夏装\n\u003c/pre\u003e\u003cp\u003e\u003cbr\u003e\u003c/p\u003e","create_time":"2020-03-27T21:42:59.000Z","create_at":1,"update_time":"2020-04-23T10:01:28.000Z","update_at":54,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"卫衣,首饰,家居服,T恤,开衫","images":"","color":"暖色,浅色","hold_flag":"\u0000","match_count":2,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

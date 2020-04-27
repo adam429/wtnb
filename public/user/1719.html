@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_rUcENMNFiP">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_rUcENMNFiP',
+    data: {
+      user: {"id":1719,"phone":"18932328515","login_count":60,"last_login_time":"2020-04-21T08:36:42.000Z","source":"GR-ZOE","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":"o4k1IxExp_cT1VmQ67s0KQxoVM0E","wx_app_openid":"oBHz74p3ZUnzAWZyZAn8z3z6J_tk","cert_name":null,"cert_no":null,"code":"e0f9c7e3c54b4d81bd9eeb6aeeda1daa","wx_language":"zh_CN","wx_nickname":"Yvonne","wx_gender":"2","wx_province":"江苏","wx_city":"南京","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83ep5IUj9BfJxIq8BRib3qUNgUJWibMg9h1tSVnjlxVo7kMYLJBHyUPibhSp7ice73sNRYS9TIkenjwmtNA/132","wx_unionid":"oGyuKw_s5P8abnKqOiHiUDxRLIeA","create_time":"2019-11-21T14:54:54.000Z","remove_flag":"\u0000","update_time":"2020-04-21T08:36:42.000Z","matching_division":-1,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83ep5IUj9BfJxIq8BRib3qUNgUJWibMg9h1tSVnjlxVo7kMYLJBHyUPibhSp7ice73sNRYS9TIkenjwmtNA/132","https://image.wetry.shop/member/1719/06683cbf-c667-46d0-8599-2d115703771d","https://image.wetry.shop/member/1719/e1dbca9e-9fb4-43ba-90ef-8ca9c2c40940","https://image.wetry.shop/member/1719/6b738b7d-ae55-4d52-9978-928a511ec88f","https://image.wetry.shop/member/1719/cbe0aea2-f9a8-4dcd-bdc0-50318e2e85e8","https://image.wetry.shop/member/1719/bf1c179e-068b-46a8-8d99-3f698ebf2544","https://image.wetry.shop/member/1719/94f3caff-856f-4fc7-876f-e16e0ed127e8","https://image.wetry.shop/member/1719/6002115e-5e74-48a6-9c94-fa9504b0f9a0","https://image.wetry.shop/member/1719/6095381d-72de-4d1f-bfce-c051e5b3a857"],"style":["V0","合格"],"sel_style":["清新田园","学院派少女","温柔小姐姐","韩系淑女","优衣库女孩"],"age":26,"marriage":["单身"],"occupation":["政府/事业单位/社会保障","职员"],"heigth":"160","weight":"51","cup":"B","up_size":"S","low_size":"27/2尺"},
+      order: {"id":6597,"order_no":"20040500139","box_num":5,"box_no":null,"type":2,"member_id":1719,"message":"开衫想要那种可以做内搭的款；选可以和之前的阔腿裤搭的内搭或者外套；选可以做牛仔外套或者米白色西装内搭的连衣裙。","expect_day":"2020-04-18T00:00:00.000Z","province":"江苏省","city":"淮安市","district":"清江浦区","addr":"水韵天成银杏苑40号楼-乙-1402","addr_username":"陈鱼","addr_phone":"18932328515","total":7,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-04-19T16:47:55.000Z","package_flag":null,"logistics_no":"SF1162576110561","return_logistics_no":"7225679823","send_time":"2020-04-18T10:56:03.000Z","returned_time":null,"complete_time":"2020-04-22T15:39:22.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"","like_category":"spring,连衣裙,开衫,外套","like_category_detail":"spring,连衣裙-长度:七分裙+九分裙;开衫;外套","stylist_id":3,"sign":null,"remark":null,"create_time":"2020-04-05T15:24:47.000Z","create_at":1,"update_time":"2020-04-22T15:39:22.000Z","update_at":56,"remove_flag":"\u0000","sign_time":"2020-04-19T10:11:13.000Z","appointment_time":"2020-04-21T13:00:00.000Z","dislike_category":"风衣,家居服,西装,打底衫,毛衣,西装裤","images":"","color":"","hold_flag":"\u0000","match_count":1,"active_coupon_id":4987},
+    },
+  })
+</script></body>
+</html>

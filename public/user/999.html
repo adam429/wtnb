@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_6u8WLeTJsW">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_6u8WLeTJsW',
+    data: {
+      user: {"id":999,"phone":"17858953122","login_count":42,"last_login_time":"2020-04-20T22:06:40.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":"o4k1IxAZ2jUuY2y3RNWHm8ARKXW0","wx_app_openid":"oBHz74k3H5v3gfN2aih5JOM7Jd4c","cert_name":null,"cert_no":null,"code":"c23eb29366a743188c3a0ac56363874b","wx_language":"zh_CN","wx_nickname":"?王琪王大哥","wx_gender":"2","wx_province":"","wx_city":"","wx_country":"斐济","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTL70L2rIwicQib9KibiaJNVbPcXcFHZBuroXHKZNMllIQlekIwAdicicM54qxXhd43ibNF6NtXN1KUxWCLvQ/132","wx_unionid":"oGyuKw6wCgYASq-_UKisSDLMhYzo","create_time":"2019-10-05T20:27:40.000Z","remove_flag":"\u0000","update_time":"2020-04-20T22:06:40.000Z","matching_division":5,"is_add_wechat":"\u0001","stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTL70L2rIwicQib9KibiaJNVbPcXcFHZBuroXHKZNMllIQlekIwAdicicM54qxXhd43ibNF6NtXN1KUxWCLvQ/132","https://image.wetry.shop/member/999/f5dcf8ba110449008cb493cedfccb396","https://image.wetry.shop/member/999/e9d28c6f059440a78d0bee5858664f04"],"style":["非正式职业","大学生","V2","合格"],"sel_style":["学院派少女","韩系淑女","美式复古","温柔小姐姐"],"age":24,"marriage":["恋爱"],"occupation":["金融/投资/银行/保险/财务/咨询","其他"],"heigth":"165","weight":"55","cup":"C","up_size":"M","low_size":"27/2尺"},
+      order: {"id":6814,"order_no":"20041300356","box_num":5,"box_no":null,"type":2,"member_id":999,"message":"","expect_day":"2020-04-21T00:00:00.000Z","province":"浙江省","city":"温州市","district":"苍南县","addr":"龙港市建新路龙跃路路口中国工商银行","addr_username":"王琪","addr_phone":"17858953122","total":6,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":25,"last_pay_time":null,"package_flag":null,"logistics_no":"SF1162627222829","return_logistics_no":null,"send_time":"2020-04-23T10:15:19.000Z","returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会","like_category":"spring,卫衣,连衣裙,外套","like_category_detail":"spring,卫衣;连衣裙-长度:七分裙;外套","stylist_id":5,"sign":null,"remark":null,"create_time":"2020-04-13T06:37:48.000Z","create_at":1,"update_time":"2020-04-23T10:15:19.000Z","update_at":54,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"","images":"","color":"暖色,浅色","hold_flag":"\u0000","match_count":2,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

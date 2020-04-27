@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_SFWZKwAthe">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_SFWZKwAthe',
+    data: {
+      user: {"id":13188,"phone":"13120836398","login_count":1,"last_login_time":"2020-04-23T22:24:16.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74rSl8PK-XAEG4Id6PqaXjGE","cert_name":null,"cert_no":null,"code":"6d1b5ef56cb44e4b963f583cad3ff606","wx_language":"zh_CN","wx_nickname":"砂砾","wx_gender":"2","wx_province":"上海","wx_city":"","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobshdz93kN06rVicRxibpeibx7q0eu9JgcAg8cxuQfSib14JnYd5icN2oR4R18ibRSnIzgLNWUK9yznb8A/132","wx_unionid":"oGyuKw14kctCGifJxfe2VoH_A9AY","create_time":"2020-04-23T22:24:15.000Z","remove_flag":"\u0000","update_time":"2020-04-23T22:24:16.000Z","matching_division":null,"is_add_wechat":null,"stylist_id":3,"photo":["https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobshdz93kN06rVicRxibpeibx7q0eu9JgcAg8cxuQfSib14JnYd5icN2oR4R18ibRSnIzgLNWUK9yznb8A/132","https://image.wetry.shop/member/13188/undefined9a08799f-7347-4780-b78a-4d908e7a5331","https://image.wetry.shop/member/13188/undefined9c458983-6c85-4fcd-abca-f41a3e1ebbe5","https://image.wetry.shop/member/13188/undefined50b5c4d2-118f-444c-95fa-4027553684a5"],"style":["合格"],"sel_style":["清新田园","温柔小姐姐","轻奢简约OL","法式复古"],"age":29,"marriage":["恋爱"],"occupation":["金融/投资/银行/保险/财务/咨询","人事/财务/行政"],"heigth":"162","weight":"52","cup":"B","up_size":"S/M","low_size":"26/1尺9"},
+      order: {"id":7155,"order_no":"20042300698","box_num":1,"box_no":null,"type":2,"member_id":13188,"message":"","expect_day":"2020-04-29T00:00:00.000Z","province":"上海市","city":"上海市","district":"嘉定区","addr":"江桥镇万达广场8号写字楼806","addr_username":"李敏","addr_phone":"13120836398","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":"2020-04-29T00:00:00.000Z","returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"度假旅行","like_category":"spring,连衣裙,开衫,外套","like_category_detail":"spring,连衣裙-长度:七分裙;开衫;外套","stylist_id":null,"sign":null,"remark":null,"create_time":"2020-04-23T22:45:04.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"卫衣,家居服,西装,西装裤","images":"","color":"暖色,浅色","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_ydCkVN89dP">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_ydCkVN89dP',
+    data: {
+      user: {"id":7964,"phone":"18629195917","login_count":23,"last_login_time":"2020-03-26T22:48:44.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":null,"wx_app_openid":"oBHz74riCTQHXqNp9YZVPG_AVoOE","cert_name":null,"cert_no":null,"code":"6ca9e393f71149f5b6df3e7c59b89fe9","wx_language":"zh_CN","wx_nickname":"张昕华","wx_gender":"2","wx_province":"","wx_city":"","wx_country":"","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI8tKGEcacGSTL7V6yVxKzMEhVl3hFOWC1sdvHIKhyNQAfO4SiaibCEHHNkI1baVI3sGfr2dMcK8u9w/132","wx_unionid":"oGyuKw9uCUhpOPuaErobgwR0UBmk","create_time":"2020-01-19T10:55:14.000Z","remove_flag":"\u0000","update_time":"2020-03-26T22:48:44.000Z","matching_division":4,"is_add_wechat":null,"stylist_id":3,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI8tKGEcacGSTL7V6yVxKzMEhVl3hFOWC1sdvHIKhyNQAfO4SiaibCEHHNkI1baVI3sGfr2dMcK8u9w/132","https://image.wetry.shop/member/7964/undefined24307fff-a782-4e54-b171-25a44ede30c2","https://image.wetry.shop/member/7964/undefined8bfa1455-6ffb-44bb-b33e-22a8ee18c388","https://image.wetry.shop/member/7964/undefinede4db418d-bd1b-4d9c-a6fc-5c1315b244da"],"style":["V0","合格"],"sel_style":["美式复古","日系森女","优衣库女孩"],"age":29,"marriage":["恋爱"],"occupation":["互联网/电子商务/通信/软件","开发工程师"],"heigth":"160","weight":"47","cup":"B","up_size":"XS/S","low_size":"26/1尺9"},
+      order: {"id":4950,"order_no":"20030900386","box_num":2,"box_no":null,"type":2,"member_id":7964,"message":"","expect_day":"2020-03-22T00:00:00.000Z","province":"陕西省","city":"西安市","district":"雁塔区","addr":"高新锦业一路11号国家外包服务示范基地一区A座101号富士通（西安）","addr_username":"张昕华","addr_phone":"18629195917","total":7,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-03-26T22:49:05.000Z","package_flag":null,"logistics_no":"SF1162263536817","return_logistics_no":"7215634311","send_time":"2020-03-22T10:45:33.000Z","returned_time":null,"complete_time":"2020-03-29T13:10:46.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"日常工作","like_category":"spring,风衣,毛衣,西装裤","like_category_detail":"spring,风衣-版型:宽松,长度:中款+长款;毛衣-领型:V领;西装裤-长度:九分裤","stylist_id":4,"sign":null,"remark":null,"create_time":"2020-03-09T14:23:59.000Z","create_at":1,"update_time":"2020-03-29T13:10:46.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2020-03-24T08:46:42.000Z","appointment_time":"2020-03-27T13:00:00.000Z","dislike_category":"大衣","images":"https://image.wetry.shop/member/7964/undefinedbe5e673d-c8d9-40cd-a95d-0dac111585d2","color":"暖色,浅色","hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

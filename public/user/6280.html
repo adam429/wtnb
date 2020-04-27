@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_F9xkjxXInD">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_F9xkjxXInD',
+    data: {
+      user: {"id":6280,"phone":"18621035992","login_count":13,"last_login_time":"2020-04-24T13:26:10.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0000","status":2,"wx_openid":"o4k1IxNvSgmu8bx5I4UuVjrbRDaQ","wx_app_openid":"oBHz74lzeMUJh4BtZxP7QANyKQfY","cert_name":null,"cert_no":null,"code":"62445e8fcb6b44a88ed0287cd2673e56","wx_language":"zh_CN","wx_nickname":"松果","wx_gender":"2","wx_province":"重庆","wx_city":"南川","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/3TXcx3F0gicgeypAvaEicDTKg3ngyibUZdxQcgicLLnuB8J9oFVwh9yAWgQxDH7ZW9ibVywZ2sa1P2fQTM1Bz9690iaA/132","wx_unionid":"oGyuKw38MLY9PNQ8jCs7gS8Sd_uo","create_time":"2019-12-22T18:35:03.000Z","remove_flag":"\u0000","update_time":"2020-04-24T13:26:10.000Z","matching_division":5,"is_add_wechat":null,"stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/3TXcx3F0gicgeypAvaEicDTKg3ngyibUZdxQcgicLLnuB8J9oFVwh9yAWgQxDH7ZW9ibVywZ2sa1P2fQTM1Bz9690iaA/132","https://image.wetry.shop/member/6280/undefinedca6e3d04-22bd-4181-8367-fadd4cf228cb","https://image.wetry.shop/member/6280/undefined2b744d84-9042-4eba-b637-f1cad3eb9858","https://image.wetry.shop/member/6280/undefined813d489d-d0b9-4713-b235-4b342c3a0a0b","https://image.wetry.shop/member/6280/undefined1aa51e8d-bd3e-487b-9488-4f5efd6bfa41","https://image.wetry.shop/member/6280/undefinedae9f7aed-ad07-48e5-b1f4-03cced57becc","https://image.wetry.shop/member/6280/undefined2f2668e9-7874-4fe2-a393-f0e2c8369d8d"],"style":["V0","不合格"],"sel_style":["清新田园","轻奢简约OL","日系森女","优衣库女孩","时装周街拍girl","法式复古","暗黑酷女孩","学院派少女","美式复古"],"age":21,"marriage":["单身"],"occupation":["学生","大学在读"],"heigth":"151","weight":"45","cup":"B","up_size":"XS/S","low_size":"25/1尺8"},
+      order: {"id":5628,"order_no":"20031501064","box_num":1,"box_no":null,"type":2,"member_id":6280,"message":"想尝试一下法式风格 慵懒舒适\n希望休闲得体 希望有一些小心机\n能弥补个子矮 手臂大腿有点粗的缺点 衣服舒适度较好\n希望是春装 \n打底衫和外套也可以有\n\n最好是成套的搭配","expect_day":"2020-03-18T00:00:00.000Z","province":"重庆市","city":"重庆市","district":"南川区","addr":"文化大厦1-5-1","addr_username":"王子嫣","addr_phone":"18621035992","total":6,"select_num":0,"amount":"0.0","discount":null,"discount_paid":null,"amount_real":"0.0","amount_paid":"0.0","amount_supplement":null,"exception_comment":null,"status":55,"last_pay_time":"2020-03-20T19:12:39.000Z","package_flag":null,"logistics_no":"SF1162218563451","return_logistics_no":"7213588857","send_time":"2020-03-18T17:19:56.000Z","returned_time":null,"complete_time":"2020-03-26T18:15:19.000Z","comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,日常工作","like_category":"spring,卫衣,毛衣,开衫","like_category_detail":"spring,卫衣;毛衣-领型:圆领+V领+一字;开衫","stylist_id":5,"sign":null,"remark":null,"create_time":"2020-03-15T21:10:52.000Z","create_at":1,"update_time":"2020-03-26T18:15:19.000Z","update_at":22,"remove_flag":"\u0000","sign_time":"2020-03-20T11:11:08.000Z","appointment_time":"2020-03-22T17:00:00.000Z","dislike_category":"西装,牛仔裤,西装裤,大衣","images":"","color":"暖色,冷色,浅色","hold_flag":"\u0000","match_count":2,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

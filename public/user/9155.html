@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_iWQcJ1AA8V">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_iWQcJ1AA8V',
+    data: {
+      user: {"id":9155,"phone":"13501107168","login_count":6,"last_login_time":"2020-04-22T19:54:00.000Z","source":"小双双jodie","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74oBaGY6mDFlF6xqWi7SoOzk","cert_name":null,"cert_no":null,"code":"183cd1ef46804b779a956cd04b4d3dbe","wx_language":"zh_CN","wx_nickname":"Yushan Z","wx_gender":"2","wx_province":"北京","wx_city":"海淀","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Ztp3bSzB3dbb0ZVXiaCS3ibuDmGuUgtRYpic0zmPblrzphehgic1BX9WiacLTTMLIfva0I9uSsTib3lWWx3SF00HR2Dg/132","wx_unionid":"oGyuKw55V2CJVOx_9NwQcMw2SYaQ","create_time":"2020-03-08T15:05:50.000Z","remove_flag":"\u0000","update_time":"2020-04-22T19:54:00.000Z","matching_division":4,"is_add_wechat":null,"stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Ztp3bSzB3dbb0ZVXiaCS3ibuDmGuUgtRYpic0zmPblrzphehgic1BX9WiacLTTMLIfva0I9uSsTib3lWWx3SF00HR2Dg/132","https://image.wetry.shop/member/9155/undefined90a2b65b-bd33-40ac-a54e-aa99d5f7b5cd","https://image.wetry.shop/member/9155/undefined3141cecf-2c20-4e1a-8beb-15f1a997afeb","https://image.wetry.shop/member/9155/undefinedf83a7f40-03bc-4eb6-9134-760b7d297053","https://image.wetry.shop/member/9155/undefined99d188bd-d1ff-4871-a8d7-26ff3f05c5a4"],"style":["合格"],"sel_style":["轻奢简约OL","设计感OL","时装周街拍girl","法式复古"],"age":29,"marriage":["单身"],"occupation":["商贸/批发零售/消费/制造","高级管理层"],"heigth":"164","weight":"53","cup":"B","up_size":"S","low_size":"26/1尺9"},
+      order: {"id":6884,"order_no":"20041500426","box_num":1,"box_no":null,"type":2,"member_id":9155,"message":"主要想选购五一去北京郊区和朋友聚会的衣服","expect_day":"2020-04-22T00:00:00.000Z","province":"北京市","city":"北京市","district":"海淀区","addr":"西四环北路郦城三区五号楼四单元502","addr_username":"王女士","addr_phone":"13611187566","total":7,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":25,"last_pay_time":null,"package_flag":null,"logistics_no":"SF1162627936908","return_logistics_no":null,"send_time":"2020-04-23T11:01:39.000Z","returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,日常工作","like_category":"spring,休闲裤,外套","like_category_detail":"spring,休闲裤-长度:长裤;外套","stylist_id":4,"sign":null,"remark":null,"create_time":"2020-04-15T18:51:11.000Z","create_at":1,"update_time":"2020-04-23T11:01:39.000Z","update_at":54,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"","images":"","color":"冷色,深色","hold_flag":"\u0000","match_count":1,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

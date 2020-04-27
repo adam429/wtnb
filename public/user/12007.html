@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_4wdjvJMnRf">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_4wdjvJMnRf',
+    data: {
+      user: {"id":12007,"phone":"13817965118","login_count":6,"last_login_time":"2020-04-16T21:32:38.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74m-dtfv_K1yVtQUJQnwWHaE","cert_name":null,"cert_no":null,"code":"4b54ef68b6e349ad972743457c89cbc5","wx_language":"zh_CN","wx_nickname":"第80次日落 Tiffany Tang","wx_gender":"2","wx_province":"上海","wx_city":"虹口","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoSySKJCmFlCxbBCSDRHHHibicdPT4Rzg89dxr0XMicrr6EL28tOpRtTxLCTLED2jFogQOvGH71ZAMXw/132","wx_unionid":"oGyuKwxdXUmBeb5b5KoFHlvFnNXQ","create_time":"2020-03-23T13:13:45.000Z","remove_flag":"\u0000","update_time":"2020-04-16T21:32:38.000Z","matching_division":1,"is_add_wechat":null,"stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoSySKJCmFlCxbBCSDRHHHibicdPT4Rzg89dxr0XMicrr6EL28tOpRtTxLCTLED2jFogQOvGH71ZAMXw/132","https://image.wetry.shop/member/12007/undefined24e8b7c5-aba3-423e-9308-925e798bf684","https://image.wetry.shop/member/12007/undefined078fba75-4606-451d-8e41-1b2dfe394734","https://image.wetry.shop/member/12007/undefinede13ae6a2-63c9-43fd-963d-350aae020468","https://image.wetry.shop/member/12007/undefinedbe080cd4-5bab-4595-8a81-595ff7c8511a","https://image.wetry.shop/member/12007/undefinede5c9efc9-bf41-41d0-9e69-17f58beb9c58","https://image.wetry.shop/member/12007/undefinedd2e14096-5a09-413f-a467-a2c273671f57","https://image.wetry.shop/member/12007/undefined289ffd55-0af4-40d0-8702-89e0869fbd48","https://image.wetry.shop/member/12007/undefineda92d443a-6bf0-412c-8e62-b4c37a503960","https://image.wetry.shop/member/12007/undefinedd6e0c2cb-ab8d-44c1-aad8-6814abf1363a"],"style":["V0","合格"],"sel_style":["温柔小姐姐","轻奢简约OL","设计感OL","韩系淑女"],"age":37,"marriage":["已婚"],"occupation":["互联网/电子商务/通信/软件","人事/财务/行政职员"],"heigth":"155","weight":"47","cup":"C","up_size":"XS/S","low_size":"24/1尺7"},
+      order: {"id":6918,"order_no":"20041600460","box_num":2,"box_no":null,"type":2,"member_id":12007,"message":"","expect_day":"2020-05-13T00:00:00.000Z","province":"上海市","city":"上海市","district":"杨浦区","addr":"周家嘴路1299弄36号1102室","addr_username":"唐丽佳","addr_phone":"13817965118","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":null,"returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,度假旅行","like_category":"spring,连衣裙,休闲裤,西装裤","like_category_detail":"spring,连衣裙;休闲裤;西装裤","stylist_id":1,"sign":null,"remark":null,"create_time":"2020-04-16T21:34:49.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"毛衣,开衫","images":"","color":"","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

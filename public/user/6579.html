@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_9p11s8SnJg">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_9p11s8SnJg',
+    data: {
+      user: {"id":6579,"phone":"13892569652","login_count":17,"last_login_time":"2020-04-22T20:08:47.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74r9HK5s75fhjQUxWLTOQuRQ","cert_name":null,"cert_no":null,"code":"a39f64a9e8f1415ba3a98581ab56c30f","wx_language":"zh_CN","wx_nickname":"might!△","wx_gender":"2","wx_province":"陕西","wx_city":"渭南","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLBia25PUps4TUOCEibVN8rQ3vrFQ8ogpCGGyWO1FCEyJgYqicEMibpC0PARuBjDXl194o2VsO3gal6PQ/132","wx_unionid":"oGyuKw19wU9a0fp1Z1etAhKGtL4I","create_time":"2019-12-23T14:57:56.000Z","remove_flag":"\u0000","update_time":"2020-04-22T20:08:47.000Z","matching_division":null,"is_add_wechat":null,"stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLBia25PUps4TUOCEibVN8rQ3vrFQ8ogpCGGyWO1FCEyJgYqicEMibpC0PARuBjDXl194o2VsO3gal6PQ/132","https://image.wetry.shop/member/6579/undefined15e93658-a226-45a6-a784-4cad453a7329","https://image.wetry.shop/member/6579/undefined283a3cd8-0872-4e3f-bca3-9e59c0672486","https://image.wetry.shop/member/6579/undefined73b1c815-27b9-4739-ab5b-00b9d7f9cb6b","https://image.wetry.shop/member/6579/undefined1665e4f6-6182-402e-9875-eb148651a1f9","https://image.wetry.shop/member/6579/undefinede2bd4ea9-f2d8-4249-9528-9daa27dd1570","https://image.wetry.shop/member/6579/undefined4bc2e838-3c74-43fd-87cf-d62628f9694f","https://image.wetry.shop/member/6579/undefinedf043289b-1b9d-49dc-a1eb-27973bdc5756","https://image.wetry.shop/member/6579/undefined21dcd735-ec83-4284-8fbe-eaf6dc084c1c"],"style":["","合格"],"sel_style":["优衣库女孩"],"age":22,"marriage":["单身"],"occupation":["学生","研究生在读"],"heigth":"167","weight":"53","cup":"B","up_size":"M","low_size":"26/1尺9"},
+      order: null,
+    },
+  })
+</script></body>
+</html>

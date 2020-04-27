@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_RE1q8le6cM">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_RE1q8le6cM',
+    data: {
+      user: {"id":123,"phone":"13671737734","login_count":49,"last_login_time":"2020-04-22T03:03:07.000Z","source":"MF4","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":"o4k1IxNtXn512xyPwkIr8hGDk5fE","wx_app_openid":"oBHz74lP8L4ksW0iXpt7Nn67ywHE","cert_name":null,"cert_no":null,"code":"1a2e67c2ca1245768c55e6cd0eec9fa6","wx_language":"zh_CN","wx_nickname":"Cordy","wx_gender":"2","wx_province":"","wx_city":"","wx_country":"","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epSaYKIIs3nGTT91wmN9Sp4QSXI4MmKvLQlgoHzvA8D0rmqgicFRZDHYTWrymnbLDAs2MbJXCyOj8Q/132","wx_unionid":"oGyuKw6NvkXb6nVd2hkcAmNBQAbE","create_time":"2019-09-15T23:48:18.000Z","remove_flag":"\u0000","update_time":"2020-04-22T03:03:07.000Z","matching_division":4,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epSaYKIIs3nGTT91wmN9Sp4QSXI4MmKvLQlgoHzvA8D0rmqgicFRZDHYTWrymnbLDAs2MbJXCyOj8Q/132","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/member/123/6a9f89935f1e478b8c1f78a897107535","https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/member/123/d29ab55e0e38454b887fd1500df26b4e"],"style":["非正式职业","传统淑女","胖妹","V1","合格"],"sel_style":["清新田园","法式复古","温柔小姐姐","高级名媛OL"],"age":31,"marriage":["恋爱"],"occupation":["金融/投资/银行/保险/财务/咨询","职员"],"heigth":"156","weight":"52","cup":"C","up_size":"S/M","low_size":"26/1尺9"},
+      order: {"id":7074,"order_no":"20042200616","box_num":7,"box_no":null,"type":2,"member_id":123,"message":"","expect_day":"2020-04-30T00:00:00.000Z","province":"上海市","city":"上海市","district":"徐汇区","addr":"五原路65弄5号1楼","addr_username":"Cordy","addr_phone":"13671737734","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":null,"returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"度假旅行","like_category":"spring,西装,牛仔裤,休闲裤","like_category_detail":"spring,西装;牛仔裤;休闲裤","stylist_id":4,"sign":null,"remark":null,"create_time":"2020-04-22T03:05:36.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"首饰,风衣,毛衣,大衣","images":"","color":"","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>
