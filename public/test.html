@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+  <div id="app_GCzPixvbu4">
+    <el-form ref="form" :model="form" :inline="true">
+      <el-form-item label="关键字">
+        <el-input v-on:input="inputEvent" v-model="form.name"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" v-on:click="onSubmit">搜索</el-button>
+        <el-button v-on:click="initTableData">取消</el-button>
+      </el-form-item>
+    </el-form>
+
+    <el-table :data="tableData" stripe style="width: 100%;">
+      <el-table-column v-for="prop in thead" :key="prop" :label="prop" :fixed="prop === '操作' ? 'right' : ''">
+        <template slot-scope="scope">
+          <div v-html="scope.row[prop]" style="font-size: 12px"></div>
+        </template>
+      </el-table-column>
+    </el-table>
+
+  </div>
+  <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+  
+<script>
+    new Vue({
+      el: '#app_GCzPixvbu4',
+      data: function () {
+        return {
+          form: {
+            name: '',
+          },
+          thead: ["SPU","Name","Price","Stock","Image","全体购买转化率","组别购买转化率","全部入盒=A","组别入盒=B","入盒比例=A/B","尺码","用户适合尺码","推荐来源","类别"],
+          allTableData: [],
+          savedTableData: [["SPU","Name","Price","Stock","Image","全体购买转化率","组别购买转化率","全部入盒=A","组别入盒=B","入盒比例=A/B","尺码","用户适合尺码","推荐来源","类别"],["\u003ca href='https://console.wetry.shop/productDetail/177'\u003e10069\u003c/a\u003e","凑单神器-绢混平纹袜","28.0",1,"https://retry-image.oss-cn-zhangjiakou.aliyuncs.com/product/spu/818c2f62-e472-4d54-aad0-7ad10e8e4808.png",0.54,0.36,46,11,4.18,["F"],"F","\u003cspan style='color:red'\u003e【群体Top发盒】【群体Top购买】\u003c/span\u003e","内衣|短袜","\u003ca href='http://localhost:3000/bms/addOrderItem?order_no=20042700888\u0026spu=10069\u0026size=F'\u003e添加\u003c/a\u003e"],["\u003ca href='https://console.wetry.shop/productDetail/209'\u003e10258\u003c/a\u003e","日本进口天鹅绒超薄丝袜（白皙）","58.0",20,"",0.45,0.5,22,8,2.75,["F"],"F","\u003cspan style='color:red'\u003e【手工挑选】\u003c/span\u003e","内衣|丝袜","\u003ca href='http://localhost:3000/bms/addOrderItem?order_no=20042700888\u0026spu=10258\u0026size=F'\u003e添加\u003c/a\u003e"]],
+          tableData: null
+        }
+      },
+      created() {
+      },
+      methods: {
+        inputEvent({ type, target }) {
+          // this.onSubmit()
+        },
+        clearData(){
+          this.form.name = ''
+          this.tableData = allTableData
+        },
+        initTableData() {
+          let tableData = []
+          let tbody = this.savedTableData.slice(1)
+          for (let line of tbody) {
+            let obj = {}
+            for (let index in this.thead) {
+              obj[this.thead[index]] = line[index]
+            }
+            tableData.push(obj)
+          }
+          this.allTableData = tableData
+          this.tableData = tableData
+        },
+        onSubmit() {
+          this.initTableData()
+          let tableData = []
+          for (let index in this.tableData) {
+            let data = this.tableData[index]
+            if (
+              (data.Name.match(this.form.name) && data.Name.match(this.form.name).length > 0)||
+              (data.SPU.match(this.form.name) && data.SPU.match(this.form.name).length > 0) ||
+              (data.Category.match(this.form.name) && data.Category.match(this.form.name).length > 0)
+            )
+
+            {
+              tableData.push(data)
+            }
+          }
+          this.tableData = tableData
+        },
+      }
+    })
+  </script></body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_2bTtQWfldu">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_2bTtQWfldu',
+    data: {
+      user: {"id":8419,"phone":"18252781962","login_count":14,"last_login_time":"2020-04-29T09:56:15.000Z","source":"一只马丁靴","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74tgK1zzgBaReWGBsIoc5Q9M","cert_name":null,"cert_no":null,"code":"4758c576e85748c080d8c50aa6adc1dc","wx_language":"zh_CN","wx_nickname":"容兮","wx_gender":"2","wx_province":"江苏","wx_city":"扬州","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/MsG1bnqM1ZgJZwl2YDkXtMKtSm5v4l3hJc3HnHYZJlnjEEf4xHwm88KYgGhibDibJ7mBYJdo1TIlUBOYDJEstbVg/132","wx_unionid":"oGyuKw_Vh4Ivw55UVc8HOgHOV7nA","create_time":"2020-03-01T17:12:00.000Z","remove_flag":"\u0000","update_time":"2020-04-29T09:56:15.000Z","matching_division":null,"is_add_wechat":"\u0001","stylist_id":2,"photo":["https://wx.qlogo.cn/mmopen/vi_32/MsG1bnqM1ZgJZwl2YDkXtMKtSm5v4l3hJc3HnHYZJlnjEEf4xHwm88KYgGhibDibJ7mBYJdo1TIlUBOYDJEstbVg/132","https://image.wetry.shop/member/8419/undefinedf605e50b-efb2-448f-a695-0777680da54c"],"style":["","合格"],"sel_style":["优衣库女孩"],"age":20,"marriage":["单身"],"occupation":["学生","大学在读"],"heigth":"164","weight":"55","cup":"B","up_size":"M/L","low_size":"28/2尺1"},
+      order: {"id":7320,"order_no":"20042600864","box_num":1,"box_no":null,"type":2,"member_id":8419,"message":"","expect_day":"2020-05-09T00:00:00.000Z","province":"江苏省","city":"镇江市","district":"丹徒区","addr":"高资街道长香西大道537号江苏大学京江学院菜鸟驿站","addr_username":"高聪容","addr_phone":"18252781962","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":null,"returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,日常工作","like_category":"spring,衬衫,开衫,外套","like_category_detail":"spring,衬衫;开衫;外套","stylist_id":null,"sign":null,"remark":null,"create_time":"2020-04-26T18:06:28.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"","images":"","color":"暖色,深色,浅色","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

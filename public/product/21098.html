@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_9mzQt8KsGS">
+<el-container>
+
+  <el-container>
+
+  <el-header>
+    <el-row :gutter="24">
+      <el-col :span="4">
+        <el-button icon="el-icon-caret-left" circle v-on:click="left"></el-button>
+        <el-button icon="el-icon-caret-right" circle v-on:click="right"></el-button>
+      </el-col>
+
+      <el-col :span="20">
+        <h1>[{{ cur_product+1 }}] {{ product_list[cur_product][15] }}
+       </h1>
+       <span v-if="product_list[cur_product][19]&gt;0"> [主推] </span>
+       <span v-if="product_list[cur_product][22]&gt;0"> [候选] </span>
+       <span v-if="product_list[cur_product][20]&gt;0"> [宝妈入盒] </span>
+       <span v-if="product_list[cur_product][21]&gt;0"> [宝妈购买] </span>
+      </el-col>
+    </el-row>
+  </el-header>
+  <el-main>
+    <el-divider></el-divider>
+    <el-row>
+        <el-button type="primary" round>加价倍数: {{ product_list[cur_product][0] }}</el-button>
+        <el-button type="primary" round>售罄率: {{ product_list[cur_product][1] }}</el-button>
+        <el-button type="success" round>回本率: {{ product_list[cur_product][2] }}</el-button>
+        <el-button type="success" round>购买转化率: {{ product_list[cur_product][3] }}</el-button>
+        <el-button type="success" round>销售次数: {{ product_list[cur_product][6] }}</el-button>
+        <el-button type="success" round>入盒次数: {{ product_list[cur_product][23] }}</el-button>
+
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="8">
+        <img style="width: 100%;" v-bind:src="product_list[cur_product][4]">
+      </el-col>
+      <el-col :span="16">
+        <line-chart :data="chart1"></line-chart>
+        <line-chart :data="chart2"></line-chart>
+        <line-chart :data="chart3"></line-chart>
+        <el-row>
+          <el-button round>采购件数: {{ product_list[cur_product][5] }}</el-button>
+          <el-button round>销售件数: {{ product_list[cur_product][6] }}</el-button>
+          <el-button round>库存件数: {{ product_list[cur_product][7] }}</el-button>
+          <el-button round>补货次数: {{ product_list[cur_product][8] }}</el-button>
+          <el-button round>采购价格: {{ product_list[cur_product][9] }}</el-button>
+          <el-button round>采购成本: {{ product_list[cur_product][10] }}</el-button>
+          <el-button round>销售价格: {{ product_list[cur_product][11] }}</el-button>
+          <el-button round>销售总额: {{ product_list[cur_product][12] }}</el-button>
+        </el-row>
+      </el-col>
+    </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_9mzQt8KsGS',
+    data: {
+      product_list: [["0.0",0.0,"0.0","0.000%","https://image.wetry.shop/product/spu/e8940a7f-6f96-4720-bb67-dfe01a43f106.png",2,0,2,1,"145.0","290.0",0,0,[{"name":"总库存","data":{"20200415":0,"20200416":2,"20200417":2,"20200418":2,"20200419":2,"20200420":2,"20200421":2,"20200422":2,"20200423":2,"20200424":2,"20200425":2,"20200426":2,"20200427":2,"20200428":2}},{"name":"售出数量","data":{"20200415":0,"20200416":0,"20200417":0,"20200418":0,"20200419":0,"20200420":0,"20200421":0,"20200422":0,"20200423":0,"20200424":0,"20200425":0,"20200426":0,"20200427":0,"20200428":0}},{"name":"可用库存","data":{"20200415":0,"20200416":2,"20200417":2,"20200418":2,"20200419":2,"20200420":2,"20200421":2,"20200422":2,"20200423":2,"20200424":2,"20200425":2,"20200426":2,"20200427":2,"20200428":2}}],[{"name":"在单比","data":{"20200415":"NaN%","20200416":"50.000%","20200417":"100.000%","20200418":"100.000%","20200419":"100.000%","20200420":"100.000%","20200421":"100.000%","20200422":"100.000%","20200423":"100.000%","20200424":"100.000%","20200425":"100.000%","20200426":"50.000%","20200427":"0.000%","20200428":"100.000%"}},{"name":"在途比","data":{"20200415":"NaN%","20200416":"0.000%","20200417":"0.000%","20200418":"0.000%","20200419":"0.000%","20200420":"0.000%","20200421":"0.000%","20200422":"0.000%","20200423":"0.000%","20200424":"0.000%","20200425":"0.000%","20200426":"0.000%","20200427":"0.000%","20200428":"100.000%"}}],"21098 慵懒风杏色宽松阔腿长裤",{"name":"21098 慵懒风杏色宽松阔腿长裤","picture":"https://image.wetry.shop/product/spu/e8940a7f-6f96-4720-bb67-dfe01a43f106.png","purchase_time":1,"purchase_price":"145.0","sold_amount":0,"purchase_rate":0.0,"inbox_count":3,"total_stock":{"20200415":0,"20200416":2,"20200417":2,"20200418":2,"20200419":2,"20200420":2,"20200421":2,"20200422":2,"20200423":2,"20200424":2,"20200425":2,"20200426":2,"20200427":2,"20200428":2},"sold_stock":{"20200415":0,"20200416":0,"20200417":0,"20200418":0,"20200419":0,"20200420":0,"20200421":0,"20200422":0,"20200423":0,"20200424":0,"20200425":0,"20200426":0,"20200427":0,"20200428":0},"remain_stock":{"20200415":0,"20200416":2,"20200417":2,"20200418":2,"20200419":2,"20200420":2,"20200421":2,"20200422":2,"20200423":2,"20200424":2,"20200425":2,"20200426":2,"20200427":2,"20200428":2},"in_order_rate":{"20200415":"NaN%","20200416":"50.000%","20200417":"100.000%","20200418":"100.000%","20200419":"100.000%","20200420":"100.000%","20200421":"100.000%","20200422":"100.000%","20200423":"100.000%","20200424":"100.000%","20200425":"100.000%","20200426":"50.000%","20200427":"0.000%","20200428":"100.000%"},"in_trip_rate":{"20200415":"NaN%","20200416":"0.000%","20200417":"0.000%","20200418":"0.000%","20200419":"0.000%","20200420":"0.000%","20200421":"0.000%","20200422":"0.000%","20200423":"0.000%","20200424":"0.000%","20200425":"0.000%","20200426":"0.000%","20200427":"0.000%","20200428":"100.000%"},"all_purchase_rate":{"20200415":0,"20200416":0,"20200417":0,"20200418":0.0,"20200419":0.0,"20200420":0.0,"20200421":0.0,"20200422":0.0,"20200423":0.0,"20200424":0.0,"20200425":0.1,"20200426":0.1,"20200427":0.1,"20200428":0.1},"mom_purchase_rate":{"20200415":0,"20200416":0,"20200417":0,"20200418":0,"20200419":0,"20200420":0,"20200421":0,"20200422":0,"20200423":0,"20200424":0,"20200425":0,"20200426":0,"20200427":0,"20200428":0}},"21098",[{"name":"购买转化率","data":{"20200415":0,"20200416":0,"20200417":0,"20200418":0.0,"20200419":0.0,"20200420":0.0,"20200421":0.0,"20200422":0.0,"20200423":0.0,"20200424":0.0,"20200425":0.1,"20200426":0.1,"20200427":0.1,"20200428":0.1}},{"name":"宝妈购买转化率","data":{"20200415":0,"20200416":0,"20200417":0,"20200418":0,"20200419":0,"20200420":0,"20200421":0,"20200422":0,"20200423":0,"20200424":0,"20200425":0,"20200426":0,"20200427":0,"20200428":0}}],0,0,0,0,3]],
+      cur_product: 0,
+      chart1: [],
+      chart2: [],
+      chart3: [],
+    },
+    methods: {
+      load_chart: function() {
+        this.chart1 = this.product_list[this.cur_product][13]
+        this.chart2 = this.product_list[this.cur_product][14]
+        this.chart3 = this.product_list[this.cur_product][18]
+      },
+      left: function() {
+        this.cur_product -= 1
+        if (this.cur_product<0) this.cur_product = this.product_list.length-1
+        this.load_chart()
+      },
+      right: function() {
+        this.cur_product += 1
+        if (this.cur_product>=this.product_list.length) this.cur_product = 0
+        this.load_chart()
+      },
+      keyhandler: function() {
+        console.log(event.keyCode)
+        if (event.keyCode == 37) {
+        	this.left()
+        } else if (event.keyCode == 39) {
+        	this.right()
+        }
+      }
+    },
+    mounted () {
+      document.addEventListener("keyup", this.keyhandler);
+    },
+    created () {
+      this.load_chart()
+    },
+  })
+</script></body>
+</html>

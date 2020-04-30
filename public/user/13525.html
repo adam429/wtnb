@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_o2IM3Ox19P">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_o2IM3Ox19P',
+    data: {
+      user: {"id":13525,"phone":"15122151019","login_count":1,"last_login_time":"2020-04-29T15:01:31.000Z","source":"default_code","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74ovv-pjWfbCnhu70GsCsGOU","cert_name":null,"cert_no":null,"code":"f6feb321027343b1878f6eee327c9ade","wx_language":"zh_CN","wx_nickname":"今天做个好人 明天看心情 ?","wx_gender":"2","wx_province":"天津","wx_city":"东丽","wx_country":"中国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIA4HmX0euEicJ7G05kKgpHsiaRfRR2RQL0Owp5vwzy76BqoiaxJbzvPbN02yP3h2ia9f3pTP89eDrDibw/132","wx_unionid":"oGyuKw-VxJG0KFIZ3XotLqypZQ8k","create_time":"2020-04-29T15:01:31.000Z","remove_flag":"\u0000","update_time":"2020-04-29T15:01:31.000Z","matching_division":null,"is_add_wechat":null,"stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIA4HmX0euEicJ7G05kKgpHsiaRfRR2RQL0Owp5vwzy76BqoiaxJbzvPbN02yP3h2ia9f3pTP89eDrDibw/132","https://image.wetry.shop/member/13525/undefineddf1cdafb-b814-4586-ab01-1ce84700884d","https://image.wetry.shop/member/13525/undefined1080d647-7adf-40cd-8e4c-aa30ffd03aed","https://image.wetry.shop/member/13525/undefined0d9caf69-add1-490f-befe-1d196bc81423"],"style":["合格"],"sel_style":["时装周街拍girl","美式复古"],"age":22,"marriage":["单身"],"occupation":["医疗/卫生/制药","医生"],"heigth":"171","weight":"50","cup":"C","up_size":"S/M","low_size":"26/1尺9"},
+      order: {"id":7507,"order_no":"20042901052","box_num":1,"box_no":null,"type":2,"member_id":13525,"message":"","expect_day":"2020-05-19T00:00:00.000Z","province":"天津市","city":"天津市","district":"东丽区","addr":"明昕园","addr_username":"刘乐乐","addr_phone":"15122151019","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":null,"returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"休闲聚会,日常工作","like_category":"spring,衬衫,连衣裙,休闲裤","like_category_detail":"spring,衬衫;连衣裙-长度:短裙;休闲裤-长度:长裤","stylist_id":null,"sign":null,"remark":null,"create_time":"2020-04-29T15:24:22.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"卫衣,首饰,家居服,西装,毛衣,大衣,外套","images":"","color":"冷色,浅色","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>

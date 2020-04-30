@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/chart.js@2.9.3/dist/Chart.bundle.js'></script>
+<script src='https://unpkg.com/vue-chartkick@0.5.1/dist/vue-chartkick.js'></script>
+<script src='https://unpkg.com/element-ui/lib/index.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'>
+</head>
+<body>
+
+<div id="app_YsQAtXdSwy">
+<el-container>
+  <el-container>
+    <el-main>
+      <el-row :gutter="24">
+         <b>用户:</b> {{ user["wx_nickname"] }} (<a v-bind:href="'https://console.wetry.shop/customerDetail/' + user['id']">{{ user["id"] }}</a>)
+      </el-row>
+      <el-row :gutter="24">
+         <b>手机号:</b> {{ user["phone"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>渠道:</b> {{ user["source"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>标签:</b> {{ user["style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>日常风格:</b> {{ user["sel_style"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>年龄:</b> {{ user["age"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>婚姻状态:</b> {{ user["marriage"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>职业:</b> {{ user["occupation"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>身高:</b> {{ user["heigth"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>体重:</b> {{ user["weight"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>罩杯:</b> {{ user["cup"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>上身尺码:</b> {{ user["up_size"] }}
+      </el-row>
+      <el-row :gutter="24">
+         <b>下身尺码:</b> {{ user["low_size"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单情况:</b> [{{ order["status"]  }}] - {{ order["expect_day"] }}
+      </el-row>
+      <el-row :gutter="24" v-if="order">
+         <b>最近订单想要品类:</b> {{ order["like_category"] }}
+      </el-row>
+      <el-row :gutter="24">
+        <b>照片:</b><br>
+          <img v-for="photo in user['photo']" style="width: 300px" v-bind:src="photo">
+      </el-row>
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+
+
+
+<script>
+  Vue.use(VueChartkick.use(Chart))
+
+  app = new Vue({
+    el: '#app_YsQAtXdSwy',
+    data: {
+      user: {"id":13352,"phone":"15542498516","login_count":2,"last_login_time":"2020-04-26T23:30:12.000Z","source":"20-04-KOL-小仙女汁","vip_flag":"\u0001","valid_flag":"\u0001","status":2,"wx_openid":null,"wx_app_openid":"oBHz74qN_H5jiiED2kLWDJhhsmW0","cert_name":null,"cert_no":null,"code":"bfa5e3f6e6344208a0a0d0867d0a2882","wx_language":"en","wx_nickname":"Irene Zu?","wx_gender":"2","wx_province":"哥伦比亚特区","wx_city":"","wx_country":"美国","wx_avatar_url":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJxo5eTficqgFuA0XWCBenL6cmP7ov1ttaU9RIVA6HOzmpKwQZDQqQJEbh5uoxxvOgRPQ2EUMxr1YA/132","wx_unionid":"oGyuKwyBD_GB3WzpTL6leDfbMg7g","create_time":"2020-04-25T17:32:32.000Z","remove_flag":"\u0000","update_time":"2020-04-29T15:27:05.000Z","matching_division":null,"is_add_wechat":"\u0001","stylist_id":1,"photo":["https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJxo5eTficqgFuA0XWCBenL6cmP7ov1ttaU9RIVA6HOzmpKwQZDQqQJEbh5uoxxvOgRPQ2EUMxr1YA/132","https://image.wetry.shop/member/13352/undefined702708a3-c38d-4b4a-85a9-9c62ac42d77a","https://image.wetry.shop/member/13352/undefinedfe6eca4c-591b-43c5-b66d-07f6f5da7076","https://image.wetry.shop/member/13352/undefined0d13c9f7-02e8-4c1d-923e-76dc6d1ce9be","https://image.wetry.shop/member/13352/undefined51678d9f-b936-4037-8fef-bdffc123da6a"],"style":["合格"],"sel_style":["温柔小姐姐","轻奢简约OL","高级名媛OL","设计感OL","超A时髦girl"],"age":27,"marriage":["单身"],"occupation":["金融/投资/银行/保险/财务/咨询","职员"],"heigth":"162","weight":"52","cup":"B","up_size":"S","low_size":"27/2尺"},
+      order: {"id":7267,"order_no":"20042500811","box_num":1,"box_no":null,"type":2,"member_id":13352,"message":"","expect_day":"2020-05-16T00:00:00.000Z","province":"广东省","city":"深圳市","district":"福田区","addr":"石厦北三街星座大厦","addr_username":"IreneZu","addr_phone":"15542498516","total":null,"select_num":null,"amount":null,"discount":null,"discount_paid":null,"amount_real":null,"amount_paid":null,"amount_supplement":null,"exception_comment":null,"status":5,"last_pay_time":null,"package_flag":null,"logistics_no":null,"return_logistics_no":null,"send_time":"2020-05-16T00:00:00.000Z","returned_time":null,"complete_time":null,"comment":null,"comment_other":null,"print_message":null,"preview_status":null,"preview_start_time":null,"dress_occasion":"商务社交,日常工作","like_category":"spring,西装,半裙,连衣裙","like_category_detail":"spring,西装;半裙-长度:七分裙+九分裙;连衣裙-长度:七分裙+九分裙","stylist_id":null,"sign":null,"remark":null,"create_time":"2020-04-25T19:53:37.000Z","create_at":1,"update_time":null,"update_at":1,"remove_flag":"\u0000","sign_time":null,"appointment_time":null,"dislike_category":"卫衣,风衣,家居服,毛衣,牛仔裤,休闲裤,大衣,外套","images":"","color":"","hold_flag":"\u0000","match_count":null,"active_coupon_id":null},
+    },
+  })
+</script></body>
+</html>
