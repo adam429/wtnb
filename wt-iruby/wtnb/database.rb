@@ -16,11 +16,9 @@ module WTCube
 
   # ----------- exec_sql ----------------
   def exec_sql(sql)
-    Record.connection.execute(sql)
+    ActiveRecord::Base.connection.execute(sql)
   end
 
-  # Timezone
-  Time.zone = "UTC"
 
   class Store
     class << self

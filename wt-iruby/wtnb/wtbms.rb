@@ -62,10 +62,12 @@ module WTCube
       def updateSendTime(order_no,date,remark="提前")
         json = {"orderNo"=> order_no, "expectDay"=>  date.to_s(:db)[0,10], "remark" => remark}
         url = "https://console.wetry.shop/console/order/order/updateSendTime"
+      end
+
+      def api_call(url,json)
         response = HTTParty.post(url, :headers => headers,:body => json.to_json)
         return JSON.parse(response.body)
       end
-
     end
     self.__init()
   end

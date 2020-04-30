@@ -60,13 +60,15 @@ module WTCube
   # ----------- Display -------------
   def puts_table(table,option={})
     table = table.map do |x|
-      x.map do |y|
-        ret = y.to_s
-        if /\.(jpg|png|jpeg)$/.match(y.to_s) then
-          ret = "<img src='#{y.to_s}' width='150'/>"
-        end
+      if x!=nil
+        x.map do |y|
+          ret = y.to_s
+          if /\.(jpg|png|jpeg)$/i.match(y.to_s) then
+            ret = "<img src='#{y.to_s}' width='150'/>"
+          end
 
-        ret
+          ret
+        end
       end
     end
     if option[:file]

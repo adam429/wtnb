@@ -12,19 +12,25 @@
       </el-col>
 
       <el-col :span=20>
-        <h1>[{{ cur_product+1 }}] {{ product_list[cur_product][15] }}</h1>
+        <h1>[{{ cur_product+1 }}] {{ product_list[cur_product][15] }}
+       </h1>
+       <span v-if="product_list[cur_product][19]>0"> [主推] </span>
+       <span v-if="product_list[cur_product][22]>0"> [候选] </span>
+       <span v-if="product_list[cur_product][20]>0"> [宝妈入盒] </span>
+       <span v-if="product_list[cur_product][21]>0"> [宝妈购买] </span>
       </el-col>
     </el-row>
   </el-header>
   <el-main>
     <el-divider></el-divider>
     <el-row>
-      <el-col :span=12>
         <el-button type="primary" round>加价倍数: {{ product_list[cur_product][0] }}</el-button>
         <el-button type="primary" round>售罄率: {{ product_list[cur_product][1] }}</el-button>
         <el-button type="success" round>回本率: {{ product_list[cur_product][2] }}</el-button>
         <el-button type="success" round>购买转化率: {{ product_list[cur_product][3] }}</el-button>
-      </el-col>
+        <el-button type="success" round>销售次数: {{ product_list[cur_product][6] }}</el-button>
+        <el-button type="success" round>入盒次数: {{ product_list[cur_product][23] }}</el-button>
+
     </el-row>
     <el-row :gutter="20">
       <el-col :span="8">
@@ -33,6 +39,7 @@
       <el-col :span="16">
         <line-chart :data="chart1"></line-chart>
         <line-chart :data="chart2"></line-chart>
+        <line-chart :data="chart3"></line-chart>
         <el-row>
           <el-button round>采购件数: {{ product_list[cur_product][5] }}</el-button>
           <el-button round>销售件数: {{ product_list[cur_product][6] }}</el-button>
@@ -61,11 +68,13 @@
       cur_product: 0,
       chart1: [],
       chart2: [],
+      chart3: [],
     },
     methods: {
       load_chart: function() {
         this.chart1 = this.product_list[this.cur_product][13]
         this.chart2 = this.product_list[this.cur_product][14]
+        this.chart3 = this.product_list[this.cur_product][18]
       },
       left: function() {
         this.cur_product -= 1

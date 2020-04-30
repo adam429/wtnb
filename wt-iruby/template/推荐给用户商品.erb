@@ -1,0 +1,80 @@
+<% id =  SecureRandom.alphanumeric(10) %>
+  <div id="app_<%=id %>">
+    <el-form ref="form" :model="form" :inline="true" >
+      <el-form-item label="关键字">
+        <el-input  v-on:input="inputEvent" v-model="form.name"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" v-on:click="onSubmit">搜索</el-button>
+        <el-button v-on:click="initTableData">取消</el-button>
+      </el-form-item>
+    </el-form>
+
+    <el-table :data="tableData" stripe style="width: 100%;">
+      <el-table-column v-for="prop in thead" :key="prop" :label="prop" :fixed="prop === '操作' ? 'right' : ''">
+        <template slot-scope="scope">
+          <div v-html="scope.row[prop]" style="font-size: 12px"></div>
+        </template>
+      </el-table-column>
+    </el-table>
+
+  </div>
+  <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+  <script>
+    new Vue({
+      el: '#app_<%=id %>',
+      data: function () {
+        return {
+          form: {
+            name: '',
+          },
+          thead: <%= table[0].to_json %>,
+          allTableData: [],
+          savedTableData: <%= table.to_json %>,
+          tableData: null
+        }
+      },
+      created() {
+      },
+      methods: {
+        inputEvent({ type, target }) {
+          // this.onSubmit()
+        },
+        clearData(){
+          this.form.name = ''
+          this.tableData = allTableData
+        },
+        initTableData() {
+          let tableData = []
+          let tbody = this.savedTableData.slice(1)
+          for (let line of tbody) {
+            let obj = {}
+            for (let index in this.thead) {
+              obj[this.thead[index]] = line[index]
+            }
+            tableData.push(obj)
+          }
+          this.allTableData = tableData
+          this.tableData = tableData
+        },
+        onSubmit() {
+          this.initTableData()
+          let tableData = []
+          for (let index in this.tableData) {
+            let data = this.tableData[index]
+            if (
+              (data.Name.match(this.form.name) && data.Name.match(this.form.name).length > 0)||
+              (data.SPU.match(this.form.name) && data.SPU.match(this.form.name).length > 0) ||
+              (data.Category.match(this.form.name) && data.Category.match(this.form.name).length > 0)
+            )
+
+            {
+              tableData.push(data)
+            }
+          }
+          this.tableData = tableData
+        },
+      }
+    })
+  </script>

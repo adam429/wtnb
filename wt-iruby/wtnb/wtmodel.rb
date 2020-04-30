@@ -14,23 +14,34 @@ module PMap
   def pmap()
       out = []
       if block_given?
-        out = Parallel.map(self,in_threads: 10) do |x|
-          ActiveRecord::Base.connection.cache do
-            ActiveRecord::Base.connection_pool.with_connection do
-              yield(x)
-            end
-          end
+        # out = Parallel.map(self,in_threads: 10) do |x|
+        out = Parallel.map(self,in_processes: 10) do |x|
+          yield(x)
         end
       else
           out = to_enum :mapp
       end
       out
   end
+
+  def pfilter()
+    out = pmap do |x|
+      [x,yield(x)]
+    end.filter do |x|
+      x[1]
+    end.map do |x|
+      x[0]
+    end
+  end
 end
 
 def time()
   time_begin = Time.now()
-  yield
+  # ActiveRecord::Base.connection.cache do
+    ActiveRecord::Base.connection_pool.with_connection do
+      yield
+    end
+  # end
   time_end = Time.now()
   puts humanize(time_end-time_begin)
 end
@@ -46,6 +57,8 @@ end
 module WTCube
 
   class WTRecord < Record
+    self.inheritance_column = :_type_disabled
+
     scope :keep, -> { where(remove_flag:"\x00") }
 
     def keep
@@ -135,6 +148,7 @@ module WTCube
 
       # add user property
       def to_json
+        Time.zone = "UTC"
         ret = super
         json = JSON.parse(ret)
         if property.photo.first then
@@ -145,8 +159,8 @@ module WTCube
         json[:photo].unshift(self.wx_avatar_url)
         json[:style] = @part.split(",") if @part = property.style.value.first
         json[:sel_style] = @part.split(",") if @part = property.sel_style.value.first
-        json[:age] = ((Time.now - Time.zone.parse(property.birth.first.value))/3600/24/365).round
-        json[:marriage] =  @part.split(",").first if @part = property.marriage.value.first.split(",")
+        json[:age] = ((Time.now - Time.zone.parse(property.birth.first.value))/3600/24/365).round if property.birth.first
+        json[:marriage] =  @part.split(",").first if property.marriage.value.first and @part = property.marriage.value.first.split(",")
         json[:occupation] = @part.split(",") if @part = property.occupation.value.first
         json[:heigth] =  @part.split(",").first if @part = property.heigth.value.first
         json[:weight] = @part.split(",").first if @part = property.weight.value.first
@@ -386,7 +400,7 @@ module WTCube
       item.sold.count
     end
 
-    def category
+    def dict
       dict =[
   [4,0,"上装"],
   [6,0,"下装裙"],
@@ -498,7 +512,16 @@ module WTCube
   [107,14,"防晒伞"],
   [113,14,"面膜"],
   [105,14,"香氛"]]
+    end
+
+    def parent_category_id
       match = dict.filter do |x| x[0]==self.category_id end.first
+      match[1]
+    end
+
+    def category
+      match = dict.filter do |x| x[0]==self.category_id end.first
+      return if match==nil
       if match[1] == 0 then
         return [match[2],match[2]]
       else

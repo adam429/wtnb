@@ -77,6 +77,19 @@ module WTCube
 
     return target
   end
+
+  def enable_cache()
+    ActiveRecord::Base.connection.enable_query_cache!
+  end
+
+  def disable_cache()
+    ActiveRecord::Base.connection.disable_query_cache!
+  end
+
+  def clear_cache()
+    ActiveRecord::Base.connection.query_cache.clear
+  end
+
 end
 
 # Log ActiveRecord SQL
@@ -89,9 +102,13 @@ Warning[:deprecated] = false
 include WTCube
 
 # Connect database
-connect_db()
+# connect_db()
+# enable_cache()
 
 # Load ActionView Helper
 include ActionView::Helpers::NumberHelper
 
 include Chartkick::Helper
+
+# Timezone
+Time.zone = "UTC"
